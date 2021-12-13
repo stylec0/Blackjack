@@ -1,19 +1,39 @@
 body {
   background: green;
-  height: 100vh;
-  margin: 0;
+  height: 90vh;
   font-family: Helvetica;
   display: grid;
   /* mobile first - single column */
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   /* grid-gap: 10vw; */
+  text-align: center;
 
 }
+
+#welcome {
+  grid-column: 3;
+  grid-row: 3;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 10px;
+  margin: 50px 50px 100px 10px;
+  padding: 50px;
+  background: yellow;
+}
+
 
 #dealer-deck {
   grid-column: 3;
   grid-row: 1;
+  
+}
+
+.dealer-hand {
+  grid-column: 3;
+  grid-row: 2;
+  background: white;
+  
 }
 
 #player-deck {
@@ -24,7 +44,8 @@ body {
 
 #start-game {
   grid-column: 3;
-  grid-row: 4 / 6;
+  grid-row: 4;
+  /* position: relative; */
   
 }
 
@@ -37,7 +58,7 @@ body {
 
 button {
   display: grid;
-  margin: 10% 50% 80% 10%;
+  margin: 50px 50px 30px 10px;
   padding: 50px;
   font-size: 16px;
   background: yellow;
