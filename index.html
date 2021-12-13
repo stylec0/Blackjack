@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+    <title>Charles's BlackJack Project</title>
     <link href="css/card-deck-css/css/cardstarter.css" rel="stylesheet" />
     <link href="css/main.css" rel="stylesheet" />
     <script defer src="main.js"></script>
   </head>
   <body>
-    <h3>Master Deck</h3>
+    <h3 id="dealer-deck">Dealer Hand</h3>
     <section id="master-deck-container" class="card-container"></section>
-    <button>RE-SHUFFLE DECK</button>
-    <h3>Shuffled Deck</h3>
+    <h3 id="player-deck">Player Hand</h3>
+    <button id="start-game">Start Game</button>
+    
     <section id="shuffled-deck-container" class="card-container">
     </section>
   </body>
