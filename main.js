@@ -3,20 +3,36 @@
 /*----- constants -----*/
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
-const masterDeck = buildMasterDeck();
 
 // Build a 'master' deck of 'card' objects used to create shuffled decks
-// const masterDeck = buildMasterDeck();
-// renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
+const masterDeck = buildMasterDeck();
+renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
+
+// /*----- cached element references -----*/
+const shuffledContainer = document.getElementById('shuffled-deck-container');
 
 /*----- app's state (variables) -----*/
 let shuffledDeck;
+
+// cached element references //
 let dealerHand = [];
 let playerHand = [];
 let dealerScore = 0;
 let playerScore = 0;
 
+/*----- event listeners -----*/
+
+
 /*----- functions -----*/
+
+// Create function to deal player cards into player hand
+function dealPlayerCards () {
+    for (let i; i < 2; i++){
+        let deckCard = shuffledDeck.pop()
+        playerHand.push(card); 
+    }
+}
+
 function getNewShuffledDeck() {
     // Create a copy of the masterDeck (leave masterDeck untouched!)
     const tempDeck = [...masterDeck];
@@ -71,8 +87,7 @@ function getNewShuffledDeck() {
 
 
 
-// /*----- cached element references -----*/
-// const shuffledContainer = document.getElementById('shuffled-deck-container');
+
 
 // const handContainer = {
 //     player: document.querySelector('playerHand'),
