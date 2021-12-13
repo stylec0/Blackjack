@@ -10,6 +10,9 @@ renderDeckInContainer(masterDeck, document.getElementById('master-deck-container
 
 // /*----- cached element references -----*/
 const shuffledContainer = document.getElementById('shuffled-deck-container');
+const dealBtn = document.getElementById('start-game');
+const standBtn = document.getElementById('stand');
+const hitBtn = document.getElementById('hit');
 
 /*----- app's state (variables) -----*/
 let shuffledDeck;
@@ -87,8 +90,6 @@ function getNewShuffledDeck() {
   // We call init, because we want to initialize our state when the page loads
 
   function init() {
-    let dealerHand = [];
-    let playerHand = [];
     dealPlayerCards();
     getNewShuffledDeck() ;
     renderNewShuffledDeck() ;
