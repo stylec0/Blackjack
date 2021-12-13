@@ -21,14 +21,14 @@ let dealerScore = 0;
 let playerScore = 0;
 
 /*----- event listeners -----*/
-
+startGameButton.addEventListener('click', startGame);
 
 /*----- functions -----*/
 
 // Create function to deal player cards into player hand
 function dealPlayerCards () {
     for (let i; i < 2; i++){
-        let deckCard = shuffledDeck.pop()
+        let card = shuffledDeck.pop()
         playerHand.push(card); 
     }
 }
@@ -84,7 +84,18 @@ function getNewShuffledDeck() {
   
   renderNewShuffledDeck();
 
+  // We call init, because we want to initialize our state when the page loads
 
+  function init() {
+    let dealerHand = [];
+    let playerHand = [];
+    dealPlayerCards();
+    getNewShuffledDeck() ;
+    renderNewShuffledDeck() ;
+    buildMasterDeck();
+  }
+
+  init();
 
 
 
@@ -102,9 +113,9 @@ function getNewShuffledDeck() {
 
 // /*----- event listeners -----*/
 // document.querySelector('button').addEventListener('click', renderNewShuffledDeck);
-startGameButton.addEventListener('click', startGame);
-standButton.addEventListener('click', stand);
-hitButton.addEventListener('click', hit);
+// startGameButton.addEventListener('click', startGame);
+// standButton.addEventListener('click', stand);
+// hitButton.addEventListener('click', hit);
 
 // // /*----- functions -----*/
 
