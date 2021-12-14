@@ -5,10 +5,10 @@ const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 
 // Build a 'master' deck of 'card' objects used to create shuffled decks
-const masterDeck = buildMasterDeck();
+const masterDeck = newDeck();
 
 /*----- app's state (variables) -----*/
-let shuffledDeck;
+let shuffledDeck = shuffleDeck();
 let dealerHand = [];
 let playerHand = [];
 
@@ -24,8 +24,14 @@ standBtn.addEventListener('click', stand);
 
 /*----- functions -----*/
 
+function dealPlayerCards () {
+    for (let i; i < 2; i++){
+        let card = shuffledDeck.pop()
+        playerHand.push(card); 
+    }
+}
 
-function buildMasterDeck() {
+function newDeck() {
     const deck = [];
     // Use nested forEach to generate card objects
     suits.forEach(function(suit) {
@@ -56,10 +62,11 @@ function shuffleDeck() {
   
   // We call init, because we want to initialize our state when the page loads
 
+  init();
+
   function init() {
-    buildMasterDeck();
-    getNewShuffledDeck();
-    shuffledDeck(masterDeck);
+    newDeck();
+    shuffleDeck();
     
   }
 
