@@ -23,7 +23,8 @@ let dealerDeckHand = document.getElementById('dealer-hand')
 startGameBtn.addEventListener('click', start);
 hitBtn.addEventListener('click', hit);
 standBtn.addEventListener('click', stand);
-document.querySelector('hitBtn').addEventListener('click', hit);
+document.querySelector('#hit').addEventListener('click', hit);
+document.querySelector('#stand').addEventListener('click', stand);
 
 /*----- functions -----*/
 
@@ -55,7 +56,7 @@ function dealDealerCards () {
 
 function showPlayerHand() {
     playerDeckHand.innerHTML = '';
-    playerHand.forEach(function(card, idx) {
+    playerHand.forEach(function(card) {
       let cards = `<div class = "card ${card.face}"></div>`
       playerDeckHand.innerHTML += cards;
   
@@ -76,8 +77,15 @@ function showDealerHand() {
 function hit() {
     let card = shuffledDeck.pop();
         playerHand.push(card); 
+        let cards = `<div class = "card ${card.face}"></div>`
+        playerDeckHand.innerHTML += cards;
         console.log(playerHand)
+        addCardValues()
   }
+
+// function stand() {
+//   // end turn, count card value, dealer's turn
+// }
 
 
 function newDeck() {
@@ -118,9 +126,27 @@ function shuffleDeck() {
     shuffleDeck();
     dealPlayerCards();
     dealDealerCards();
+    // gameLogic()
   }
 
+// Game Logic
 
+function addCardValues() {
+  for (let i = 0; i < playerHand.length; i++) {
+    playerTotal = 0;
+    playerTotal += playerHand[i].value
+    console.log(playerTotal)
+  }
+}
+
+
+// function gameLogic() {
+//   if (playerHand === 21) {
+//     console.log("Blackjack! Player wins!");
+//   } else if (playerHand > 21) {
+//     console.log("Player Bust! Dealer wins!");
+//   }
+// }
 
 
 
