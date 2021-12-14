@@ -23,6 +23,7 @@ let dealerDeckHand = document.getElementById('dealer-hand')
 startGameBtn.addEventListener('click', start);
 hitBtn.addEventListener('click', hit);
 standBtn.addEventListener('click', stand);
+document.querySelector('hitBtn').addEventListener('click', hit);
 
 /*----- functions -----*/
 
@@ -55,8 +56,8 @@ function dealDealerCards () {
 function showPlayerHand() {
     playerDeckHand.innerHTML = '';
     playerHand.forEach(function(card, idx) {
-      let x = `<div class = "card ${card.face}"></div>`
-      playerDeckHand.innerHTML += x;
+      let cards = `<div class = "card ${card.face}"></div>`
+      playerDeckHand.innerHTML += cards;
   
     })
   }
@@ -64,11 +65,19 @@ function showPlayerHand() {
 function showDealerHand() {
     dealerDeckHand.innerHTML = '';
     dealerHand.forEach(function(card, idx) {
-      let x = `<div class = "card ${card.face}"></div>`
-      dealerDeckHand.innerHTML += x;
-  
+      let cards = `<div class = "card ${card.face}"></div>`
+      if (idx === 0) {
+        cards = `<div class = "card back-blue"></div>`
+      }
+      dealerDeckHand.innerHTML += cards;
 })
 }
+
+function hit() {
+    let card = shuffledDeck.pop();
+        playerHand.push(card); 
+        console.log(playerHand)
+  }
 
 
 function newDeck() {
@@ -109,7 +118,6 @@ function shuffleDeck() {
     shuffleDeck();
     dealPlayerCards();
     dealDealerCards();
-    
   }
 
 
