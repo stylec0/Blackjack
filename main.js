@@ -10,6 +10,7 @@ const masterDeck = newDeck();
 let shuffledDeck = shuffleDeck();
 let dealerHand = [];
 let playerHand = [];
+let playerTotal = 0;
 
 // /*----- cached element references -----*/
 const startGameBtn = document.getElementById('start');
@@ -132,20 +133,28 @@ function shuffleDeck() {
 // Game Logic
 
 function addCardValues() {
+  let playerTotal = 0;
   for (let i = 0; i < playerHand.length; i++) {
-    playerTotal = 0;
-    playerTotal += playerHand[i].value
-    console.log(playerTotal)
+    playerTotal += playerHand[i].value;
   }
 }
 
+// function testAce() {
+//   for (let i = 0; i < playerHand.length; i++) {
+//     if (playerHand[i].face.includes('A') && playerTotal < 21) {
+//       playerHand[i].value = 1; 
+//     }
+// }
+// }
 
 // function gameLogic() {
-//   if (playerHand === 21) {
+//   if (playerTotal === 21) {
 //     console.log("Blackjack! Player wins!");
-//   } else if (playerHand > 21) {
+//   } else if (playerTotal < 21) {
+//     console.log("Hit or Stand?");
+//   }else { (playerTotal > 21) 
 //     console.log("Player Bust! Dealer wins!");
-//   }
+// }
 // }
 
 
