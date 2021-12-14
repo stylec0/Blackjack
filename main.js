@@ -25,10 +25,10 @@ standBtn.addEventListener('click', stand);
 /*----- functions -----*/
 
 function dealPlayerCards () {
-    for (let i; i < 2; i++){
-        let card = shuffledDeck;
+    for (let i = 0; i < 2; i++){
+        let card = shuffledDeck.pop();
         playerHand.push(card); 
-        return playerHand
+        return playerHand;
     }
 }
 
