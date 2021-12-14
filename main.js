@@ -26,8 +26,9 @@ standBtn.addEventListener('click', stand);
 
 function dealPlayerCards () {
     for (let i; i < 2; i++){
-        let card = shuffledDeck.pop()
+        let card = shuffledDeck;
         playerHand.push(card); 
+        return playerHand
     }
 }
 
@@ -67,6 +68,7 @@ function shuffleDeck() {
   function init() {
     newDeck();
     shuffleDeck();
+    dealPlayerCards();
     
   }
 
