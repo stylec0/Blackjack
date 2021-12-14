@@ -49,16 +49,19 @@ header {
   
 }
 
-/* .dealer-hand {
+#dealer-hand {
   grid-column: 3;
-  grid-row: 2;
-  background: white;
-  
-} */
+  grid-row: 3;
+}
 
 #player-deck {
   grid-column: 3;
   grid-row: 6;
+}
+
+#player-hand {
+  grid-column: 3;
+  grid-row: 5;
   
 }
 

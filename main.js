@@ -16,6 +16,7 @@ const startGameBtn = document.getElementById('start');
 const standBtn = document.getElementById('stand');
 const hitBtn = document.getElementById('hit');
 let playerDeckHand = document.getElementById('player-hand')
+let dealerDeckHand = document.getElementById('dealer-hand')
 
 
 /*----- event listeners -----*/
@@ -25,23 +26,50 @@ standBtn.addEventListener('click', stand);
 
 /*----- functions -----*/
 
-//
 function dealPlayerCards () {
     for (let i = 0; i < 2; i++){
         let card = shuffledDeck.pop();
         playerHand.push(card); 
     }
-    showPlayerHand()
+    showPlayerHand();
 }
 
-function showPlayerHand () {
-    // get playerHand data,
-    console.log(playerHand)
-    // Display PlayerHand
-    console.log(playerDeckHand)
-    playerDeckHand.innerHTML = `${playerHand[0].face} ${playerHand[1].face}`;
-    
+function dealDealerCards () {
+    for (let i = 0; i < 2; i++){
+        let card = shuffledDeck.pop();
+        dealerHand.push(card); 
+    }
+    showDealerHand();
 }
+
+// function showPlayerHand () { 
+//     // get playerHand data, 
+//     console.log(playerHand)
+//     // Display PlayerHand 
+//     console.log(playerDeckHand)
+//     playerDeckHand.innerHTML = `${playerHand[0].face} ${playerHand[1].face}`;
+//     newDeck();
+//     }
+    
+
+function showPlayerHand() {
+    playerDeckHand.innerHTML = '';
+    playerHand.forEach(function(card, idx) {
+      let x = `<div class = "card ${card.face}"></div>`
+      playerDeckHand.innerHTML += x;
+  
+    })
+  }
+
+function showDealerHand() {
+    dealerDeckHand.innerHTML = '';
+    dealerHand.forEach(function(card, idx) {
+      let x = `<div class = "card ${card.face}"></div>`
+      dealerDeckHand.innerHTML += x;
+  
+})
+}
+
 
 function newDeck() {
     const deck = [];
@@ -80,6 +108,7 @@ function shuffleDeck() {
     newDeck();
     shuffleDeck();
     dealPlayerCards();
+    dealDealerCards();
     
   }
 
@@ -332,5 +361,3 @@ function shuffleDeck() {
         //define callbacks
 
         //store elements on the page
-
-        //store player objects
