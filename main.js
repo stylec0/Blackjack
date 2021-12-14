@@ -1,5 +1,4 @@
-///Charles Co's Blackjack JS///
-
+///Charles Co's Blackjack JS//
 /*----- constants -----*/
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
@@ -16,6 +15,8 @@ let playerHand = [];
 const startGameBtn = document.getElementById('start');
 const standBtn = document.getElementById('stand');
 const hitBtn = document.getElementById('hit');
+let playerDeckHand = document.getElementById('player-hand')
+
 
 /*----- event listeners -----*/
 startGameBtn.addEventListener('click', start);
@@ -24,12 +25,22 @@ standBtn.addEventListener('click', stand);
 
 /*----- functions -----*/
 
+//
 function dealPlayerCards () {
     for (let i = 0; i < 2; i++){
         let card = shuffledDeck.pop();
         playerHand.push(card); 
-        return playerHand;
     }
+    showPlayerHand()
+}
+
+function showPlayerHand () {
+    // get playerHand data,
+    console.log(playerHand)
+    // Display PlayerHand
+    console.log(playerDeckHand)
+    playerDeckHand.innerHTML = `${playerHand[0].face} ${playerHand[1].face}`;
+    
 }
 
 function newDeck() {
