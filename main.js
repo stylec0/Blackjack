@@ -25,9 +25,6 @@ let dealerDeckHand = document.getElementById('dealer-hand')
 startGameBtn.addEventListener('click', init);
 hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
-document.querySelector('#hit').addEventListener('click', playerHit);
-document.querySelector('#stand').addEventListener('click', stand);
-document.querySelector('#start').addEventListener('click', init);
 
 /*----- functions -----*/
 
@@ -73,7 +70,6 @@ function playerHit() {
         let cards = `<div class = "card ${card.face}"></div>`
         playerDeckHand.innerHTML += cards;
         playerCardValues();
-        gameLogic() 
   }
 
   function dealerHit() {
@@ -82,23 +78,38 @@ function playerHit() {
         let cards = `<div class = "card ${card.face}"></div>`
         dealerDeckHand.innerHTML += cards;
         dealerCardValues();
-        gameLogic() 
   }
 
 function dealerTurn() {
-  if (dealerTotal > 17) {
-      dealerHit();
-    }
-    gameLogic()
-  }
+  if (dealerTotal < 17) {
+      dealerHit(); 
+}else if (dealerTotal >= 17) {
+  compareValues();
+}
+}
 
 
 // Stand Function
 
 function stand() {
   dealerTurn();
-  playerCardValues()
-  dealerCardValues() 
+  compareValues();
+}
+
+// Compare Values
+
+function compareValues() {
+  if (playerTotal > 21) {
+    console.log("Player Bust! Dealer wins!");
+  }
+  else if(dealerTotal > 21) {
+    console.log("Dealer Busts! Player Wins!");
+  }
+  else if (playerTotal > dealerTotal) {
+    console.log(`"Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}"`)
+  }else {
+    console.log(`"Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}"`)
+  }
 }
 
 
@@ -151,7 +162,6 @@ function shuffleDeck() {
     render();
     playerCardValues();
     dealerCardValues();
-    gameLogic()
   }
 
 // Game Logic
@@ -161,6 +171,7 @@ function playerCardValues() {
   for (let i = 0; i < playerHand.length; i++) {
     playerTotal += playerHand[i].value;
   }
+  gameLogic()
 }
 
 function dealerCardValues() {
@@ -185,13 +196,12 @@ function gameLogic() {
     console.log("Player Bust! Dealer wins!");
   }else if (playerTotal === 21) {
     console.log("Blackjack! Player wins!");
-  }
-  if (dealerTotal >= 17) {
-    console.log("Dealer stands")
+  }else if (dealerTotal >= 17) {
+    console.log("Dealer stands");
   }else if (dealerTotal === 21) {
-    console.log("Black Jack! Dealer Wins")
+    console.log("Black Jack! Dealer Wins");
   }else { (dealerTotal > 21) 
-    console.log("Dealer Busts! Player Wins!")
+    console.log("Dealer Busts! Player Wins!");
 }
 }
 
