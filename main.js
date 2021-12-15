@@ -22,7 +22,7 @@ let dealerDeckHand = document.getElementById('dealer-hand')
 
 
 /*----- event listeners -----*/
-startGameBtn.addEventListener('click', start);
+startGameBtn.addEventListener('click', init);
 hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
 document.querySelector('#hit').addEventListener('click', playerHit);
@@ -85,16 +85,34 @@ function playerHit() {
         playerCardValues();
   }
 
-function dealerHit() {
-  
-}
+  function dealerHit() {
+    let card = shuffledDeck.pop();
+        dealerHand.push(card); 
+        let cards = `<div class = "card ${card.face}"></div>`
+        dealerDeckHand.innerHTML += cards;
+        dealerCardValues();
+  }
+
+function dealerTurn() {
+  if (dealerTotal > 17) {
+    console.log("dealer hits")
+    dealerHit();
+  }else if(dealerTotal >= 17) {
+    console.log("dealer stands")
+  }else if (dealerTotal === 21) {
+    console.log("Black Jack! Dealer Wins")
+    } else { (dealerTotal > 21) 
+      console.log("Dealer Busts! Player Wins!")
+    }
+  }
 
 
 // Stand Function
 
 function stand() {
-  playerCardValues() 
-  // end turn, count card value, dealer's turn
+  dealerTurn();
+  playerCardValues();
+  dealerCardValues()
 }
 
 
@@ -160,6 +178,7 @@ function playerCardValues() {
 }
 
 function dealerCardValues() {
+  dealerTotal = 0;
   for (let i = 0; i < dealerHand.length; i++) {
     dealerTotal += dealerHand[i].value;
   }
