@@ -70,6 +70,7 @@ function playerHit() {
         let cards = `<div class = "card ${card.face}"></div>`
         playerDeckHand.innerHTML += cards;
         playerCardValues();
+        playerHasAce()
   }
 
   function dealerHit() {
@@ -78,6 +79,7 @@ function playerHit() {
         let cards = `<div class = "card ${card.face}"></div>`
         dealerDeckHand.innerHTML += cards;
         dealerCardValues();
+        dealerHasAce() 
   }
 
 function dealerTurn() {
@@ -142,8 +144,16 @@ function shuffleDeck() {
     return shuffledDeck;
   }
   
+  function renderNewShuffledDeck() {
+    // Create a copy of the masterDeck (leave masterDeck untouched!)
+    shuffledDeck = shuffleDeck();
+    showPlayerHand(shuffledDeck);
+  }
+
+
   // Create Render function
   function render() {
+    renderNewShuffledDeck();
     showPlayerHand();
     showDealerHand();
   }
@@ -156,6 +166,7 @@ function shuffleDeck() {
     dealerHand = [];
     playerTotal = 0;
     dealerTotal = 0;
+    newDeck();
     shuffleDeck();
     dealPlayerCards();
     dealDealerCards();
@@ -181,12 +192,26 @@ function dealerCardValues() {
   }
 }
 
-function testAce() {
+function playerHasAce() {
+  playerTotal = 0;
   for (let i = 0; i < playerHand.length; i++) {
-    if (playerHand[i].face.includes('A') && playerTotal < 21) {
-      playerHand[i].value = 1; 
+    if (playerHand[i].face.includes('A') && playerTotal > 21) {
+      playerHand[i].value = 1; }
+    {
+      playerTotal += playerHand[i].value
+      console.log("Player Ace function is working")
     }
-    console.log(playerHand[i])
+
+}
+}
+
+function dealerHasAce() {
+  for (let i = 0; i < dealerHand.length; i++) {
+    if (dealerHand[i].face.includes('A') && dealerTotal > 21) {
+      dealerHand[i].value = 1; 
+      console.log("Dealer Ace function is working")
+    }
+
 }
 }
 
