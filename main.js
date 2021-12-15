@@ -181,13 +181,14 @@ function dealerCardValues() {
   }
 }
 
-// function testAce() {
-//   for (let i = 0; i < playerHand.length; i++) {
-//     if (playerHand[i].face.includes('A') && playerTotal < 21) {
-//       playerHand[i].value = 1; 
-//     }
-// }
-// }
+function testAce() {
+  for (let i = 0; i < playerHand.length; i++) {
+    if (playerHand[i].face.includes('A') && playerTotal < 21) {
+      playerHand[i].value = 1; 
+    }
+    console.log(playerHand[i])
+}
+}
 
 function gameLogic() {
   if (playerTotal < 21) {
