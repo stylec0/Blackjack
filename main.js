@@ -11,6 +11,7 @@ let shuffledDeck = shuffleDeck();
 let dealerHand = [];
 let playerHand = [];
 let playerTotal = 0;
+let dealerTotal = 0;
 
 // /*----- cached element references -----*/
 const startGameBtn = document.getElementById('start');
@@ -22,10 +23,11 @@ let dealerDeckHand = document.getElementById('dealer-hand')
 
 /*----- event listeners -----*/
 startGameBtn.addEventListener('click', start);
-hitBtn.addEventListener('click', hit);
+hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
-document.querySelector('#hit').addEventListener('click', hit);
+document.querySelector('#hit').addEventListener('click', playerHit);
 document.querySelector('#stand').addEventListener('click', stand);
+document.querySelector('#start').addEventListener('click', init);
 
 /*----- functions -----*/
 
@@ -40,7 +42,7 @@ function dealPlayerCards () {
 function dealDealerCards () {
     for (let i = 0; i < 2; i++){
         let card = shuffledDeck.pop();
-        dealerHand.push(card); 
+        dealerHand.push(card);
     }
     showDealerHand();
 }
@@ -75,13 +77,13 @@ function showDealerHand() {
 })
 }
 
-function hit() {
+function playerHit() {
     let card = shuffledDeck.pop();
         playerHand.push(card); 
         let cards = `<div class = "card ${card.face}"></div>`
         playerDeckHand.innerHTML += cards;
-        console.log(playerHand)
-        addCardValues()
+        gameLogic();
+        playerCardValues();
   }
 
 // function stand() {
@@ -118,24 +120,40 @@ function shuffleDeck() {
     return shuffledDeck;
   }
   
+  // Create Render function
+  function render() {
+    showPlayerHand();
+    showDealerHand();
+  }
+  
+
   // We call init, because we want to initialize our state when the page loads
 
-  init();
-
   function init() {
-    newDeck();
+    playerHand = [];
+    dealerHand = [];
+    playerTotal = 0;
+    dealerTotal = 0;
     shuffleDeck();
     dealPlayerCards();
     dealDealerCards();
-    // gameLogic()
+    render();
+    playerCardValues();
+    dealerCardValues();
+    gameLogic();
   }
 
 // Game Logic
 
-function addCardValues() {
-  let playerTotal = 0;
+function playerCardValues() {
   for (let i = 0; i < playerHand.length; i++) {
     playerTotal += playerHand[i].value;
+  }
+}
+
+function dealerCardValues() {
+  for (let i = 0; i < dealerHand.length; i++) {
+    dealerTotal += dealerHand[i].value;
   }
 }
 
@@ -147,15 +165,15 @@ function addCardValues() {
 // }
 // }
 
-// function gameLogic() {
-//   if (playerTotal === 21) {
-//     console.log("Blackjack! Player wins!");
-//   } else if (playerTotal < 21) {
-//     console.log("Hit or Stand?");
-//   }else { (playerTotal > 21) 
-//     console.log("Player Bust! Dealer wins!");
-// }
-// }
+function gameLogic() {
+  if (playerTotal < 21) {
+    console.log("Hit or Stand?");
+  } else if (playerTotal > 21) {
+    console.log("Player Bust! Dealer wins!");
+  }else { (playerTotal === 21)
+    console.log("Blackjack! Player wins!");
+}
+}
 
 
 
