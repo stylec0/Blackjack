@@ -82,13 +82,20 @@ function playerHit() {
         playerHand.push(card); 
         let cards = `<div class = "card ${card.face}"></div>`
         playerDeckHand.innerHTML += cards;
-        gameLogic();
         playerCardValues();
   }
 
-// function stand() {
-//   // end turn, count card value, dealer's turn
-// }
+function dealerHit() {
+  
+}
+
+
+// Stand Function
+
+function stand() {
+  playerCardValues() 
+  // end turn, count card value, dealer's turn
+}
 
 
 function newDeck() {
@@ -140,15 +147,16 @@ function shuffleDeck() {
     render();
     playerCardValues();
     dealerCardValues();
-    gameLogic();
   }
 
 // Game Logic
 
 function playerCardValues() {
+  playerTotal = 0;
   for (let i = 0; i < playerHand.length; i++) {
     playerTotal += playerHand[i].value;
   }
+  gameLogic();
 }
 
 function dealerCardValues() {
