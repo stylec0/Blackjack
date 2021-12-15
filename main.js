@@ -69,8 +69,8 @@ function playerHit() {
         playerHand.push(card); 
         let cards = `<div class = "card ${card.face}"></div>`
         playerDeckHand.innerHTML += cards;
-        playerCardValues();
         playerHasAce()
+        playerCardValues();
   }
 
   function dealerHit() {
@@ -79,7 +79,7 @@ function playerHit() {
         let cards = `<div class = "card ${card.face}"></div>`
         dealerDeckHand.innerHTML += cards;
         dealerCardValues();
-        dealerHasAce() 
+        // dealerHasAce() 
   }
 
 function dealerTurn() {
@@ -177,7 +177,8 @@ function shuffleDeck() {
 
 // Game Logic
 
-function playerCardValues() {
+
+function playerCardValues() {    
   playerTotal = 0;
   for (let i = 0; i < playerHand.length; i++) {
     playerTotal += playerHand[i].value;
@@ -197,23 +198,34 @@ function playerHasAce() {
   for (let i = 0; i < playerHand.length; i++) {
     if (playerHand[i].face.includes('A') && playerTotal > 21) {
       playerHand[i].value = 1; }
-    {
       playerTotal += playerHand[i].value
+    {
+      
       console.log("Player Ace function is working")
     }
 
 }
 }
 
-function dealerHasAce() {
-  for (let i = 0; i < dealerHand.length; i++) {
-    if (dealerHand[i].face.includes('A') && dealerTotal > 21) {
-      dealerHand[i].value = 1; 
-      console.log("Dealer Ace function is working")
-    }
+///Test functions below
 
-}
-}
+// function playerHasAce() {
+//     if (playerHand.face.includes('A') && playerTotal > 21) {
+//       playerHand.value = 1;
+//       playerTotal += playerHand[i].value } {
+//       console.log("Player Ace function is working")
+//     }
+// }
+
+// function dealerHasAce() {
+//   for (let i = 0; i < dealerHand.length; i++) {
+//     if (dealerHand[i].face.includes('A') && dealerTotal > 21) {
+//       dealerHand[i].value = 1; 
+//       console.log("Dealer Ace function is working")
+//     }
+
+// }
+// }
 
 function gameLogic() {
   if (playerTotal < 21) {
