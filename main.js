@@ -17,6 +17,9 @@ let dealerTotal = 0;
 const startGameBtn = document.getElementById('start');
 const standBtn = document.getElementById('stand');
 const hitBtn = document.getElementById('hit');
+const gameResults = document.getElementById('game-results');
+const playerCardTotal = document.getElementById('player-total')
+const dealerCardTotal = document.getElementById('dealer-total')
 const playButtons = document.getElementById('play-buttons');
 let playerDeckHand = document.getElementById('player-hand');
 let dealerDeckHand = document.getElementById('dealer-hand');
@@ -106,6 +109,7 @@ function dealerTurn() {
 
 function stand() {
   dealerTurn();
+  updateScores()
 }
 
 function newDeck() {
@@ -159,7 +163,7 @@ function shuffleDeck() {
     dealerHand = [];
     playerTotal = 0;
     dealerTotal = 0;
-    buttonChange();
+    // buttonChange();
     newDeck();
     shuffleDeck();
     dealPlayerCards();
@@ -167,10 +171,11 @@ function shuffleDeck() {
     render();
     playerCardValues();
     dealerCardValues();
+    gameLogic();
+    updateScores()
   }
 
 // Game Logic
-
 
 function playerCardValues() {
   playerTotal = 0;
@@ -187,6 +192,13 @@ function dealerCardValues() {
   }
 }
 
+function gameLogic() {
+  if (playerTotal < 21) {
+    gameResults.innerText = "Hit or Stand?";
+  } else if (playerTotal > 21) {
+    gameResults.innerText = "Player Bust! Dealer wins!";
+  }
+}
 // function checkAce() {
 //   for (let i = 0; i < playerHand.length; i++)
 //   if (playerHand[i].face.includes('A')) {
@@ -219,29 +231,22 @@ function dealerHasAce(card) {
     }
 }
 
-function gameLogic() {
-  if (playerTotal < 21) {
-    console.log("Hit or Stand?");
-  } else if (playerTotal > 21) {
-    console.log("Player Bust! Dealer wins!");
-  }else if (playerTotal === 21) {
-    console.log("Blackjack! Player wins!");
-  }else if (dealerTotal >= 17) {
-    console.log("Dealer stands");
-  }else if (dealerTotal === 21) {
-    console.log("Black Jack! Dealer Wins");
-  }else { (dealerTotal > 21) 
-    console.log("Dealer Busts! Player Wins!");
-}
-}
+//   }else if (playerTotal === 21) {
+//     console.log("Blackjack! Player wins!");
+//   }else if (dealerTotal >= 17) {
+//     console.log("Dealer stands");
+//   }else if (dealerTotal === 21) {
+//     console.log("Black Jack! Dealer Wins");
+//   }else { (dealerTotal > 21) 
+//     console.log("Dealer Busts! Player Wins!");
 
-function buttonChange() {
-  playButtons.classList.remove('hidden');
-  hitBtn.classList.add('show-hit');
-  standBtn.classList.add('show-stand');
-  startGameBtn.classList.add('hidden');
-  console.log("button change works")
-}
+// function buttonChange() {
+//   playButtons.classList.remove('hidden');
+//   hitBtn.classList.add('show-hit');
+//   standBtn.classList.add('show-stand');
+//   startGameBtn.classList.add('hidden');
+//   console.log("button change works")
+// }
 
 
 
@@ -249,21 +254,36 @@ function buttonChange() {
 
 function compareValues() {
   if (playerTotal === dealerTotal){
-    console.log(`"It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
+    gameResults.innerText = (`"It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
+    playerCardTotal.innerText = '';
+    dealerCardTotal.innerText = '';
   }
   else if (playerTotal > 21) {
-    console.log("Player Bust! Dealer wins!");
+    gameResults.innerText = ("Player Bust! Dealer wins!");
+    playerCardTotal.innerText = '';
+    dealerCardTotal.innerText = '';
   }
   else if(dealerTotal > 21) {
-    console.log("Dealer Busts! Player Wins!");
+    gameResults.innerText = ("Dealer Busts! Player Wins!");
+    playerCardTotal.innerText = '';
+    dealerCardTotal.innerText = '';
   }
   else if (playerTotal > dealerTotal) {
-    console.log(`"Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
+    gameResults.innerText = (`"Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
+    playerCardTotal.innerText = '';
+    dealerCardTotal.innerText = '';
   }else {
-    console.log(`"Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!"`)
+    gameResults.innerText = (`"Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!"`)
+    playerCardTotal.innerText = '';
+    dealerCardTotal.innerText = '';
   }
+  updateScores();
 }
 
+function updateScores() {
+  playerCardTotal.innerText = (`Player has ${playerTotal}`);
+  dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
+}
 
 // psuedocode
 

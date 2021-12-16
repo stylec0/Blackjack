@@ -4,7 +4,7 @@ body {
   font-family: Helvetica;
   display: grid;
   /* mobile first - single column */
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
   /* grid-gap: 10vw; */
   text-align: center;
@@ -44,6 +44,11 @@ header {
   flex-direction: column;
 } */
 
+#game-results {
+  grid-column: 3;
+  grid-row: 5;
+}
+
 #dealer-deck {
   grid-column: 3;
   grid-row: 2;
@@ -55,25 +60,34 @@ header {
   grid-row: 3;
 }
 
+#dealer-total {
+  grid-column: 3;
+  grid-row: 4;
+}
+
 #player-deck {
   grid-column: 3;
-  grid-row: 7;
+  grid-row: 11;
 }
 
 #player-hand {
   grid-column: 3;
-  grid-row: 6;
-  
+  grid-row: 10; 
+}
+
+#player-total {
+  grid-column: 3;
+  grid-row: 9;
 }
 
 #hit {
   grid-column: 2;
-  grid-row: 5;
+  grid-row: 7;
 }
 
 #stand {
   grid-column: 4;
-  grid-row: 5;
+  grid-row: 7;
 }
 
 .show-hit {
@@ -88,9 +102,9 @@ header {
   grid-row: 5;
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 /* .card-container {
   display: flex;
@@ -107,7 +121,7 @@ header {
   bottom: 50%; */
   /* margin: 50px 10px 10px 50px; */
   grid-column: 3;
-  grid-row: 5;
+  grid-row: 7;
   padding: 50px;
   text-align: center;
 }
