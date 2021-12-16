@@ -79,7 +79,9 @@ function playerHit() {
         dealerHand.push(card); 
         let cards = `<div class = "card ${card.face}"></div>`
         dealerDeckHand.innerHTML += cards;
+        dealerHasAce(card)
         dealerCardValues();
+        dealerTurn();
         // dealerHasAce() 
   }
 
@@ -96,25 +98,7 @@ function dealerTurn() {
 
 function stand() {
   dealerTurn();
-  compareValues();
 }
-
-// Compare Values
-
-function compareValues() {
-  if (playerTotal > 21) {
-    console.log("Player Bust! Dealer wins!");
-  }
-  else if(dealerTotal > 21) {
-    console.log("Dealer Busts! Player Wins!");
-  }
-  else if (playerTotal > dealerTotal) {
-    console.log(`"Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}"`)
-  }else {
-    console.log(`"Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}"`)
-  }
-}
-
 
 function newDeck() {
     const deck = [];
@@ -213,31 +197,18 @@ function dealerCardValues() {
 function playerHasAce(card) {
   for (let i = 0; i < playerHand.length; i++) {
     if (playerHand[i].face.includes('A') && playerTotal + card.value > 21) {
-      playerHand[i].value = 1; 
-      console.log(playerHand[i].value)}
+      playerHand[i].value = 1; }
       playerTotal += playerHand[i].value
     }
 }
 
-///Test functions below
-
-// function playerHasAce() {
-//     if (playerHand.face.includes('A') && playerTotal > 21) {
-//       playerHand.value = 1;
-//       playerTotal += playerHand[i].value } {
-//       console.log("Player Ace function is working")
-//     }
-// }
-
-// function dealerHasAce() {
-//   for (let i = 0; i < dealerHand.length; i++) {
-//     if (dealerHand[i].face.includes('A') && dealerTotal > 21) {
-//       dealerHand[i].value = 1; 
-//       console.log("Dealer Ace function is working")
-//     }
-
-// }
-// }
+function dealerHasAce(card) {
+  for (let i = 0; i < dealerHand.length; i++) {
+    if (dealerHand[i].face.includes('A') && dealerTotal + card.value > 21) {
+      dealerHand[i].value = 1; }
+      dealerTotal += dealerHand[i].value
+    }
+}
 
 function gameLogic() {
   if (playerTotal < 21) {
@@ -255,7 +226,24 @@ function gameLogic() {
 }
 }
 
+// Compare Values
 
+function compareValues() {
+  if (playerTotal === dealerTotal){
+    console.log(`"It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
+  }
+  else if (playerTotal > 21) {
+    console.log("Player Bust! Dealer wins!");
+  }
+  else if(dealerTotal > 21) {
+    console.log("Dealer Busts! Player Wins!");
+  }
+  else if (playerTotal > dealerTotal) {
+    console.log(`"Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
+  }else {
+    console.log(`"Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!"`)
+  }
+}
 
 
 // psuedocode
