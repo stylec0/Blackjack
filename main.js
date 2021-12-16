@@ -1,10 +1,9 @@
-///Charles Co's Blackjack JS//
-/*------------------- constants -------------------*/
+/*----------------------------------- constants -----------------------------------*/
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 const masterDeck = newDeck();
 
-/*------------------- app's state (variables) -------------------*/
+/*--------------------------- app's state (variables) ---------------------------*/
 let shuffledDeck = shuffleDeck();
 let dealerHand = [];
 let playerHand = [];
@@ -54,7 +53,6 @@ function dealPlayerCards () {
         let card = shuffledDeck.pop();
         playerHand.push(card); 
     }
-    // showPlayerHand();
 }
 
 function dealDealerCards () {
@@ -62,7 +60,6 @@ function dealDealerCards () {
         let card = shuffledDeck.pop();
         dealerHand.push(card);
     }
-    // showDealerHand();
 }
 
 function showPlayerHand() {
@@ -84,7 +81,7 @@ function showDealerHand() {
 })
 }
 
-/*--------------------------------  Player/Dealer Hit, Stand and Turn functions-----------------------------------*/
+/*--------------------------  Player/Dealer Hit, Stand and end turn functions----------------------*/
 
 
 function playerHit() {
@@ -117,11 +114,12 @@ function dealerHit() {
         dealerTurn();
   }
 
+// When stand button is pressed, end player turn and go to dealer turn
 function stand() {
   dealerTurn();
 }
 
-/*--------------------------------  Master deck and Shuffled deck functions-----------------------------------*/
+/*------------------------  Master deck and Shuffled deck functions----------------------*/
 
 function newDeck() {
     const deck = [];
@@ -159,7 +157,7 @@ function shuffleDeck() {
   }
 
 
-  // Create Render function
+  // Render function for cards
   function render() {
     renderNewShuffledDeck();
     showPlayerHand();
@@ -167,11 +165,11 @@ function shuffleDeck() {
   }
   
 
-/*--------------------------------  Game Logic -----------------------------------*/
+/*----------------------------  Game Logic ----------------------------*/
 
 function checkPlayerTotal() {
   if (playerTotal === 21) {
-    compareValues(); 
+    stand(); 
   } else if (playerTotal > 21) {
     compareValues();
   } else { (playerTotal < 21)
@@ -216,7 +214,7 @@ function dealerHasAce(card) {
 }
 
 
-/*--------------------------------  Compare values and update HTML functions  -----------------------------------*/
+/*--------------------  Compare values and update HTML functions  ----------------------*/
 
 function compareValues() {
   if (playerTotal === dealerTotal){
