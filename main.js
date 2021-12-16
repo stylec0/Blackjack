@@ -237,6 +237,8 @@ function gameLogic() {
 
 function buttonChange() {
   playButtons.classList.remove('hidden');
+  hitBtn.classList.add('show-hit');
+  standBtn.classList.add('show-stand');
   startGameBtn.classList.add('hidden');
   console.log("button change works")
 }

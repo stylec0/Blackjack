@@ -4,7 +4,7 @@ body {
   font-family: Helvetica;
   display: grid;
   /* mobile first - single column */
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
   /* grid-gap: 10vw; */
   text-align: center;
@@ -13,6 +13,7 @@ body {
 header {
   font-family: Helvetica;
   display: block;
+  padding: 10px;
   grid-column: 3;
   grid-row: 1;
   border: 2px solid grey;
@@ -38,10 +39,10 @@ header {
   grid-row: 4;
 } */
 
-#start {
-  grid-column: 3;
-  grid-row: 4;
-}
+/* #play-buttons {
+  display: flex;
+  flex-direction: column;
+} */
 
 #dealer-deck {
   grid-column: 3;
@@ -56,23 +57,35 @@ header {
 
 #player-deck {
   grid-column: 3;
-  grid-row: 6;
+  grid-row: 7;
 }
 
 #player-hand {
   grid-column: 3;
-  grid-row: 5;
+  grid-row: 6;
   
 }
 
 #hit {
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 5;
 }
 
 #stand {
   grid-column: 4;
-  grid-row: 4;
+  grid-row: 5;
+}
+
+.show-hit {
+  display: grid;
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.show-stand {
+  display: grid;
+  grid-column: 4;
+  grid-row: 5;
 }
 
 .hidden {
@@ -86,10 +99,23 @@ header {
   border: 4px dotted grey;
 } */
 
-button {
-  display: grid;
-  margin: 50px 50px 30px 10px;
+#start {
+  position: inherit;
+  /* left: 50%;
+  top: 50%;
+  right: 50%;
+  bottom: 50%; */
+  /* margin: 50px 10px 10px 50px; */
+  grid-column: 3;
+  grid-row: 5;
   padding: 50px;
+  text-align: center;
+}
+
+button {
+  /* display: grid; */
+  /* margin: 50px 50px 30px 10px; */
+  /* padding: 50px; */
   font-size: 16px;
   background: yellow;
   color: grey;
