@@ -1,19 +1,17 @@
 ///Charles Co's Blackjack JS//
-/*----- constants -----*/
+/*------------------- constants -------------------*/
 const suits = ['s', 'c', 'd', 'h'];
 const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
-
-// Build a 'master' deck of 'card' objects used to create shuffled decks
 const masterDeck = newDeck();
 
-/*----- app's state (variables) -----*/
+/*------------------- app's state (variables) -------------------*/
 let shuffledDeck = shuffleDeck();
 let dealerHand = [];
 let playerHand = [];
 let playerTotal = 0;
 let dealerTotal = 0;
 
-// /*----- cached element references -----*/
+// /*-------------------------- cached element references -------------------*/
 const startGameBtn = document.getElementById('start');
 const standBtn = document.getElementById('stand');
 const hitBtn = document.getElementById('hit');
@@ -24,27 +22,39 @@ const playButtons = document.getElementById('play-buttons');
 let playerDeckHand = document.getElementById('player-hand');
 let dealerDeckHand = document.getElementById('dealer-hand');
 
-// Test Functions for adding new buttons
-// function addButtons() {
-//   const standBtn = document.createElement('#stand');
-// }
 
-
-
-
-/*----- event listeners -----*/
+/*--------------------------------- event listeners ---------------------------------*/
 startGameBtn.addEventListener('click', init);
 hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
 
-/*----- functions -----*/
+/*------------------ Once Start Game is pressed. The init function is called ----------------*/
+
+function init() {
+  playerHand = [];
+  dealerHand = [];
+  playerTotal = 0;
+  dealerTotal = 0;
+  newDeck();
+  shuffleDeck();
+  dealPlayerCards();
+  dealDealerCards();
+  render();
+  playerCardValues();
+  dealerCardValues();
+  updateScores();
+  checkPlayerTotal();
+  // buttonChange();
+}
+
+/*---------------------------- Deal and Show card functions----------------------------*/
 
 function dealPlayerCards () {
     for (let i = 0; i < 2; i++){
         let card = shuffledDeck.pop();
         playerHand.push(card); 
     }
-    showPlayerHand();
+    // showPlayerHand();
 }
 
 function dealDealerCards () {
@@ -52,7 +62,7 @@ function dealDealerCards () {
         let card = shuffledDeck.pop();
         dealerHand.push(card);
     }
-    showDealerHand();
+    // showDealerHand();
 }
 
 function showPlayerHand() {
@@ -74,6 +84,9 @@ function showDealerHand() {
 })
 }
 
+/*--------------------------------  Player/Dealer Hit, Stand and Turn functions-----------------------------------*/
+
+
 function playerHit() {
     let card = shuffledDeck.pop();
         playerHand.push(card); 
@@ -82,10 +95,18 @@ function playerHit() {
         playerHasAce(card);
         playerCardValues();
         updateScores();
-        gameLogic();
+        checkPlayerTotal();
   }
 
-  function dealerHit() {
+function dealerTurn() {
+    if (dealerTotal < 17) {
+        dealerHit(); 
+  }else if (dealerTotal >= 17) {
+    compareValues();
+  }
+  }
+
+function dealerHit() {
     let card = shuffledDeck.pop();
         dealerHand.push(card); 
         let cards = `<div class = "card ${card.face}"></div>`
@@ -96,20 +117,11 @@ function playerHit() {
         dealerTurn();
   }
 
-function dealerTurn() {
-  if (dealerTotal < 17) {
-      dealerHit(); 
-}else if (dealerTotal >= 17) {
-  compareValues();
-}
-}
-
-
-// Stand Function
-
 function stand() {
   dealerTurn();
 }
+
+/*--------------------------------  Master deck and Shuffled deck functions-----------------------------------*/
 
 function newDeck() {
     const deck = [];
@@ -155,33 +167,24 @@ function shuffleDeck() {
   }
   
 
-  // We call init, because we want to initialize our state when the page loads
+/*--------------------------------  Game Logic -----------------------------------*/
 
-  function init() {
-    playerHand = [];
-    dealerHand = [];
-    playerTotal = 0;
-    dealerTotal = 0;
-    // buttonChange();
-    newDeck();
-    shuffleDeck();
-    dealPlayerCards();
-    dealDealerCards();
-    render();
-    playerCardValues();
-    dealerCardValues();
-    updateScores();
-    gameLogic();
+function checkPlayerTotal() {
+  if (playerTotal === 21) {
+    compareValues(); 
+  } else if (playerTotal > 21) {
+    compareValues();
+  } else { (playerTotal < 21)
+    gameResults.innerText = "Hit or Stand?";
   }
-
-// Game Logic
+}
 
 function playerCardValues() {
   playerTotal = 0;
   for (let i = 0; i < playerHand.length; i++) {
     playerTotal += playerHand[i].value;
   }
-  gameLogic();
+  checkPlayerTotal();
 }
 
 function dealerCardValues() {
@@ -191,31 +194,10 @@ function dealerCardValues() {
   }
 }
 
-function gameLogic() {
-  if (playerTotal === 21) {
-    compareValues(); 
-  } else if (playerTotal > 21) {
-    compareValues();
-  } else { (playerTotal < 21)
-    gameResults.innerText = "Hit or Stand?";
-    // gameResults.innerText = "Player Bust! Dealer wins!";
-  }
+function updateScores() {
+  playerCardTotal.innerText = (`Player has ${playerTotal}`);
+  dealerCardTotal.innerText = (" ");
 }
-// function checkAce() {
-//   for (let i = 0; i < playerHand.length; i++)
-//   if (playerHand[i].face.includes('A')) {
-//     aceValue(i);
-//   console.log("Check Ace function working")
-// }
-// }
-
-// function aceValue(idx) {
-//   if (playerTotal > 21) {
-//     playerHand[idx].value = 1;
-//     console.log("ace Value function working")
-//   }
-// }
-
 
 function playerHasAce(card) {
   for (let i = 0; i < playerHand.length; i++) {
@@ -233,25 +215,8 @@ function dealerHasAce(card) {
     }
 }
 
-//   }else if (playerTotal === 21) {
-//     console.log("Blackjack! Player wins!");
-//   }else if (dealerTotal >= 17) {
-//     console.log("Dealer stands");
-//   }else if (dealerTotal === 21) {
-//     console.log("Black Jack! Dealer Wins");
-//   }else { (dealerTotal > 21) 
-//     console.log("Dealer Busts! Player Wins!");
 
-// function buttonChange() {
-//   playButtons.classList.remove('hidden');
-//   hitBtn.classList.add('show-hit');
-//   standBtn.classList.add('show-stand');
-//   startGameBtn.classList.add('hidden');
-//   console.log("button change works")
-// }
-
-
-// Compare Values
+/*--------------------------------  Compare values and update HTML functions  -----------------------------------*/
 
 function compareValues() {
   if (playerTotal === dealerTotal){
@@ -285,10 +250,27 @@ function compareValues() {
   }
 }
 
-function updateScores() {
-  playerCardTotal.innerText = (`Player has ${playerTotal}`);
-  dealerCardTotal.innerText = (" ");
-}
+
+
+//////////////////////////////////////////// Test Functions! ////////////////////////////////////////////
+
+  
+// Test Functions for adding new buttons
+// function addButtons() {
+//   const standBtn = document.createElement('#stand');
+// }
+
+
+
+// function buttonChange() {
+//   playButtons.classList.remove('hidden');
+//   hitBtn.classList.add('show-hit');
+//   standBtn.classList.add('show-stand');
+//   startGameBtn.classList.add('hidden');
+//   console.log("button change works")
+// }
+
+
 
 // psuedocode
 
