@@ -52,6 +52,7 @@ function dealPlayerCards () {
     for (let i = 0; i < 2; i++){
         let card = shuffledDeck.pop();
         playerHand.push(card); 
+        playerHasAce(card);
     }
 }
 
@@ -79,6 +80,14 @@ function showDealerHand() {
       }
       dealerDeckHand.innerHTML += cards;
 })
+}
+
+function revealDealerCard() {
+  dealerDeckHand.innerHTML = '';
+  dealerHand.forEach(function(card, idx) {
+  let cards = `<div class = "card ${card.face}"></div>`
+  dealerDeckHand.innerHTML += cards;
+  })
 }
 
 /*--------------------------  Player/Dealer Hit, Stand and end turn functions----------------------*/
@@ -116,6 +125,7 @@ function dealerHit() {
 
 // When stand button is pressed, end player turn and go to dealer turn
 function stand() {
+  revealDealerCard();
   dealerTurn();
 }
 
@@ -171,6 +181,7 @@ function checkPlayerTotal() {
   if (playerTotal === 21) {
     stand(); 
   } else if (playerTotal > 21) {
+    revealDealerCard();
     compareValues();
   } else { (playerTotal < 21)
     gameResults.innerText = "Hit or Stand?";
@@ -200,9 +211,13 @@ function updateScores() {
 function playerHasAce(card) {
   for (let i = 0; i < playerHand.length; i++) {
     if (playerHand[i].face.includes('A') && playerTotal + card.value > 21) {
-      playerHand[i].value = 1; }
-      playerTotal += playerHand[i].value
+      playerHand[i].value = 1; 
+      playerTotal += playerHand[i].value;
+    } else if (playerHand[i].face.includes('A') && playerTotal + card.value < 21) {
+      playerHand[i].value = 11;
+      playerTotal += playerHand[i].value;
     }
+  }
 }
 
 function dealerHasAce(card) {
@@ -223,14 +238,44 @@ function compareValues() {
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
+  else if (playerTotal && dealerTotal === 21){
+    gameResults.innerText = (`It is a Tie! Both Player and Dealer has Blackjack!`)
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (' ');
+    startGameBtn.innerText = ("Play Again?");
+  }
+  else if (playerTotal === 21 && dealerTotal > 21) {
+    gameResults.innerText = (`Player has Blackjack! Dealer Busts with ${dealerTotal}!`);
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
+    startGameBtn.innerText = ("Play Again?");
+  }
+  else if (playerTotal === 21 && dealerTotal < 21) {
+    gameResults.innerText = (`Player has Blackjack! Dealer loss with ${dealerTotal}!`);
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
+    startGameBtn.innerText = ("Play Again?");
+  }
+  else if (dealerTotal === 21 && playerTotal < 21) {
+    gameResults.innerText = (`Dealer has Blackjack! Player loss with ${playerTotal}!`);
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
+    startGameBtn.innerText = ("Play Again?");
+  }
+  else if (dealerTotal === 21 && playerTotal > 21) {
+    gameResults.innerText = (`Dealer has Blackjack! Player Busts with ${playerTotal}!`);
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
+    startGameBtn.innerText = ("Play Again?");
+  }
   else if (playerTotal > 21) {
-    gameResults.innerText = (`Player Bust with ${playerTotal}! Dealer wins!`);
+    gameResults.innerText = (`Player Bust with ${playerTotal}! Dealer wins with ${dealerTotal}!`);
     playerCardTotal.innerText = (' ');
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if(dealerTotal > 21) {
-    gameResults.innerText = (`Dealer Busts with ${dealerTotal}! Player Wins!`);
+    gameResults.innerText = (`Dealer Busts with ${dealerTotal}! Player Wins with ${playerTotal}!`);
     playerCardTotal.innerText = (' ');
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
