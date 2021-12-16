@@ -170,7 +170,6 @@ function shuffleDeck() {
     render();
     playerCardValues();
     dealerCardValues();
-    compareValues();
     updateScores();
     gameLogic();
   }
@@ -193,10 +192,12 @@ function dealerCardValues() {
 }
 
 function gameLogic() {
-  if (playerTotal < 21) {
-    gameResults.innerText = "Hit or Stand?";
+  if (playerTotal === 21) {
+    compareValues(); 
   } else if (playerTotal > 21) {
     compareValues();
+  } else { (playerTotal < 21)
+    gameResults.innerText = "Hit or Stand?";
     // gameResults.innerText = "Player Bust! Dealer wins!";
   }
 }
@@ -256,37 +257,37 @@ function compareValues() {
   if (playerTotal === dealerTotal){
     gameResults.innerText = (`It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
     playerCardTotal.innerText = (' ');
-    dealerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal > 21) {
     gameResults.innerText = (`Player Bust with ${playerTotal}! Dealer wins!`);
     playerCardTotal.innerText = (' ');
-    dealerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if(dealerTotal > 21) {
     gameResults.innerText = (`Dealer Busts with ${dealerTotal}! Player Wins!`);
     playerCardTotal.innerText = (' ');
-    dealerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal > dealerTotal) {
     gameResults.innerText = (`Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
     playerCardTotal.innerText = (' ');
-    dealerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }else {
     gameResults.innerText = (`Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!`)
     playerCardTotal.innerText = (' ');
-    dealerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
 }
 
 function updateScores() {
   playerCardTotal.innerText = (`Player has ${playerTotal}`);
-  dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
+  dealerCardTotal.innerText = (" ");
 }
 
 // psuedocode
