@@ -17,8 +17,16 @@ let dealerTotal = 0;
 const startGameBtn = document.getElementById('start');
 const standBtn = document.getElementById('stand');
 const hitBtn = document.getElementById('hit');
-let playerDeckHand = document.getElementById('player-hand')
-let dealerDeckHand = document.getElementById('dealer-hand')
+const playButtons = document.getElementById('play-buttons');
+let playerDeckHand = document.getElementById('player-hand');
+let dealerDeckHand = document.getElementById('dealer-hand');
+
+// Test Functions for adding new buttons
+// function addButtons() {
+//   const standBtn = document.createElement('#stand');
+// }
+
+
 
 
 /*----- event listeners -----*/
@@ -151,6 +159,7 @@ function shuffleDeck() {
     dealerHand = [];
     playerTotal = 0;
     dealerTotal = 0;
+    buttonChange();
     newDeck();
     shuffleDeck();
     dealPlayerCards();
@@ -225,6 +234,14 @@ function gameLogic() {
     console.log("Dealer Busts! Player Wins!");
 }
 }
+
+function buttonChange() {
+  playButtons.classList.remove('hidden');
+  startGameBtn.classList.add('hidden');
+  console.log("button change works")
+}
+
+
 
 // Compare Values
 

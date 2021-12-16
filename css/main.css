@@ -75,6 +75,10 @@ header {
   grid-row: 4;
 }
 
+.hidden {
+  display: none;
+}
+
 /* .card-container {
   display: flex;
   flex-wrap: wrap;
