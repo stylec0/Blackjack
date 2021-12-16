@@ -1,21 +1,25 @@
 body {
   background: green;
-  height: 100vh;
+  /* height: 100vh; */
   font-family: Helvetica;
-  display: grid;
+  /* display: grid; */
   /* mobile first - single column */
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 4fr 1fr 1fr 4fr; */
   /* grid-gap: 10vw; */
   text-align: center;
+}
+
+main {
+  padding: 20px;
 }
 
 header {
   font-family: Helvetica;
   display: block;
   padding: 10px;
-  grid-column: 3;
-  grid-row: 1;
+  /* grid-column: 1;
+  grid-row: 1; */
   border: 2px solid grey;
   border-radius: 10px;
   outline: auto;
@@ -23,72 +27,80 @@ header {
   height: 10vh;
 }
 
-/* #welcome {
-  grid-column: 3;
-  grid-row: 3;
-  text-align: center;
-  border: 2px solid grey;
-  border-radius: 10px;
-  margin: 50px 50px 100px 10px;
-  padding: 50px;
-  background: White;
-} */
-
-/* .all-buttons {
-  grid-column: 3;
-  grid-row: 4;
-} */
-
-/* #play-buttons {
-  display: flex;
-  flex-direction: column;
-} */
-
-#game-results {
-  grid-column: 3;
-  grid-row: 5;
+#play-buttons {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
 }
 
-#dealer-deck {
-  grid-column: 3;
-  grid-row: 2;
+#start {
+  position: center;
+  /* grid-column: 4;
+  grid-row: 4; */
+  width: 200px;
+  height: 100px;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+}
+
+#game-results {
+  /* grid-column: 4;
+  grid-row: 3; */
+}
+
+#dealer-side {
+  /* grid-column: 4;
+  grid-row: 1; */
   
 }
 
 #dealer-hand {
-  grid-column: 3;
-  grid-row: 3;
+  /* grid-column: 4;
+  grid-row: 2; */
 }
+
+/* #dealer-deck, #dealer-hand  */
 
 #dealer-total {
-  grid-column: 3;
-  grid-row: 4;
+  /* grid-column: 3;
+  grid-row: 4; */
 }
 
-#player-deck {
-  grid-column: 3;
-  grid-row: 11;
+#player-side{
+  /* grid-column: 3;
+  grid-row: 7; */
 }
 
 #player-hand {
-  grid-column: 3;
-  grid-row: 10; 
+  /* grid-column: 4;
+  grid-row: 7;  */
 }
 
 #player-total {
-  grid-column: 3;
-  grid-row: 9;
+  /* grid-column: 4;
+  grid-row: 7; */
 }
 
 #hit {
-  grid-column: 2;
-  grid-row: 7;
+  /* display: grid; */
+  /* grid-column: 4;
+  grid-row: 7; */
+  /* place-items: center; */
+  /* justify-content: end; */
+  /* text-align: center;*/
+  /* justify-self: center; */
+  /* align-self: center;  */
 }
 
-#stand {
+/* #stand {
   grid-column: 4;
   grid-row: 7;
-}
+  width: 50px;
+  height: 50px;
+  /* justify-self: center;
+  align-self: center; */
+/* }
 
 .show-hit {
   display: grid;
@@ -113,18 +125,21 @@ header {
   border: 4px dotted grey;
 } */
 
-#start {
-  position: inherit;
-  /* left: 50%;
-  top: 50%;
-  right: 50%;
-  bottom: 50%; */
-  /* margin: 50px 10px 10px 50px; */
+/* #welcome {
   grid-column: 3;
-  grid-row: 7;
-  padding: 50px;
+  grid-row: 3;
   text-align: center;
-}
+  border: 2px solid grey;
+  border-radius: 10px;
+  margin: 50px 50px 100px 10px;
+  padding: 50px;
+  background: White;
+} */
+
+/* .all-buttons {
+  grid-column: 3;
+  grid-row: 4;
+} */
 
 button {
   /* display: grid; */
