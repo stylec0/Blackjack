@@ -60,7 +60,6 @@ function showPlayerHand() {
     playerHand.forEach(function(card) {
       let cards = `<div class = "card ${card.face}"></div>`
       playerDeckHand.innerHTML += cards;
-  
     })
   }
 
@@ -80,9 +79,10 @@ function playerHit() {
         playerHand.push(card); 
         let cards = `<div class = "card ${card.face}"></div>`
         playerDeckHand.innerHTML += cards;
-        // playerHasAce()
         playerHasAce(card);
         playerCardValues();
+        updateScores();
+        gameLogic();
   }
 
   function dealerHit() {
@@ -92,8 +92,8 @@ function playerHit() {
         dealerDeckHand.innerHTML += cards;
         dealerHasAce(card)
         dealerCardValues();
+        updateScores();
         dealerTurn();
-        // dealerHasAce() 
   }
 
 function dealerTurn() {
@@ -109,7 +109,6 @@ function dealerTurn() {
 
 function stand() {
   dealerTurn();
-  updateScores()
 }
 
 function newDeck() {
@@ -171,8 +170,9 @@ function shuffleDeck() {
     render();
     playerCardValues();
     dealerCardValues();
+    compareValues();
+    updateScores();
     gameLogic();
-    updateScores()
   }
 
 // Game Logic
@@ -182,7 +182,7 @@ function playerCardValues() {
   for (let i = 0; i < playerHand.length; i++) {
     playerTotal += playerHand[i].value;
   }
-  gameLogic()
+  gameLogic();
 }
 
 function dealerCardValues() {
@@ -196,7 +196,8 @@ function gameLogic() {
   if (playerTotal < 21) {
     gameResults.innerText = "Hit or Stand?";
   } else if (playerTotal > 21) {
-    gameResults.innerText = "Player Bust! Dealer wins!";
+    compareValues();
+    // gameResults.innerText = "Player Bust! Dealer wins!";
   }
 }
 // function checkAce() {
@@ -249,35 +250,33 @@ function dealerHasAce(card) {
 // }
 
 
-
 // Compare Values
 
 function compareValues() {
   if (playerTotal === dealerTotal){
-    gameResults.innerText = (`"It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
-    playerCardTotal.innerText = '';
-    dealerCardTotal.innerText = '';
+    gameResults.innerText = (`It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (' ');
   }
   else if (playerTotal > 21) {
-    gameResults.innerText = ("Player Bust! Dealer wins!");
-    playerCardTotal.innerText = '';
-    dealerCardTotal.innerText = '';
+    gameResults.innerText = (`Player Bust with ${playerTotal}! Dealer wins!`);
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (' ');
   }
   else if(dealerTotal > 21) {
-    gameResults.innerText = ("Dealer Busts! Player Wins!");
-    playerCardTotal.innerText = '';
-    dealerCardTotal.innerText = '';
+    gameResults.innerText = (`Dealer Busts with ${dealerTotal}! Player Wins!`);
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (' ');
   }
   else if (playerTotal > dealerTotal) {
-    gameResults.innerText = (`"Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!"`)
-    playerCardTotal.innerText = '';
-    dealerCardTotal.innerText = '';
+    gameResults.innerText = (`Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (' ');
   }else {
-    gameResults.innerText = (`"Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!"`)
-    playerCardTotal.innerText = '';
-    dealerCardTotal.innerText = '';
+    gameResults.innerText = (`Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!`)
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (' ');
   }
-  updateScores();
 }
 
 function updateScores() {
