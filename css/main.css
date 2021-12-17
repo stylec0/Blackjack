@@ -16,10 +16,11 @@ main {
 
 header {
   font-family: Helvetica;
-  display: block;
-  padding: 10px;
-  /* grid-column: 1;
-  grid-row: 1; */
+  /* display: inline-flex;
+  position: center; */
+  /* width: 400px;
+  height: 150px; */
+  padding: 20px;
   border: 2px solid grey;
   border-radius: 10px;
   outline: auto;
@@ -56,8 +57,7 @@ header {
 }
 
 #dealer-hand {
-  /* grid-column: 4;
-  grid-row: 2; */
+  font-size: 40px;
 }
 
 /* #dealer-deck, #dealer-hand  */
@@ -73,8 +73,7 @@ header {
 }
 
 #player-hand {
-  /* grid-column: 4;
-  grid-row: 7;  */
+  font-size: 40px;
 }
 
 #player-total {
