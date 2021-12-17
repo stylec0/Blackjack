@@ -246,16 +246,16 @@ function resetAceValue() {
 /*--------------------  Compare values and update HTML functions  ----------------------*/
 
 function compareValues() {
-  if (playerTotal === dealerTotal){
-    gameResults.innerText = (`It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
-    playerCardTotal.innerText = (' ');
-    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
-  }
-  else if (playerTotal === 21 && dealerTotal === 21){
+  if (playerTotal === 21 && dealerTotal === 21){
     gameResults.innerText = (`It is a Tie! Both Player and Dealer has Blackjack!`)
     playerCardTotal.innerText = (' ');
     dealerCardTotal.innerText = (' ');
+    startGameBtn.innerText = ("Play Again?");
+  }
+  else if (playerTotal === dealerTotal){
+    gameResults.innerText = (`It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
+    playerCardTotal.innerText = (' ');
+    dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal === 21 && dealerTotal > 21) {
