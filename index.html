@@ -9,25 +9,27 @@
     <script defer src="main.js"></script>
   </head>
   <body>
-    <header>
-     <main>
-      <h1>Welcome to BlackJack!</h1>
-    </header>
-      <h3 id="dealer-deck">Dealer Hand</h3>
-      <h3 id="dealer-total"></h3>
-      <div id="dealer-hand">
-      </div>
-      <h2 id="game-results">Press Start Game to play!</h2>
-      <h3 id="player-deck">Player Hand</h3>
-      <h3 id="player-total"></h3>
+    <header><h1>Welcome to BlackJack!</h1></header>
+    
+    <div class="dealer">
+      <h2 id="dealer-deck">Dealer Hand</h2>
+          <h2 id="dealer-total"></h2>
+          <div id="dealer-hand"></div>
+    </div>
+         
+          <h2 id="game-results">Press Start Game to play!</h2>
+
+      <div class="player">    
+            <div id="player-hand"></div>
+            <h2 id="player-total"></h2>
+            <h2 id="player-deck">Player Hand</h2>
+        </div>
+        
+       
+      <div id="play-buttons" class="hidden">
         <button id="start">Start Game</button>
-      <div id="player-hand">
-      </div>
-      <!-- <div id="play-buttons" class="hidden"> -->
         <button id="hit">Hit</button>
         <button id="stand">Stand</button>
-      </div>
-    </div>
-    </main> 
+    </div> 
   </body>
 </html>

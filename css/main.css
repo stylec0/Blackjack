@@ -1,90 +1,84 @@
-/* body {
-  
-  height: 100vh;
-  font-family: Helvetica;
-  display: grid;
-  grid-template-columns: 200px 400px 200px 200px;
-  grid-template-rows: 55px 30px 200px 40px 250px 30px 150px;
-  grid-gap: 2vw;
-  text-align: center;
-} */
-
-/* body {
-  background: rgb(255, 255, 255);
-  background-image: url("../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  font-family: Helvetica;
-  display: grid;
-  /* mobile first - single column */
-  /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 2fr 1fr 1fr; */
-  /* grid-gap: 10vw; */
-  /* text-align: center; */
-/* }  */
-
 body {
   background: green;
   background-image: url("../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg");
   background-size: cover;
-  background-position: center;
+  /* background-position: center; */
   height: 100vh;
   font-family: Helvetica;
   display: grid;
   /* mobile first - single column */
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 100px 200px 100px 1fr;
+  grid-template-rows: 100px 200px 100px 100px 100px;
+  grid-template-columns: 6fr 5fr 2fr 2fr 2fr 2fr;
   /* grid-gap: 10vw; */
   text-align: center;
 }
 
 header {
   font-family: Helvetica;
-  display: block;
+  color: white;
   padding: 10px;
+  display:grid;
   grid-column: 1;
   grid-row: 1;
   border: 2px solid grey;
   border-radius: 10px;
   outline: auto;
-  background: white;
-  height: 10vh;
+  background: black;
+  /* height: 5vh; */
+  /* bottom: 20px; */
 }
-
-/* #welcome {
-  grid-column: 3;
-  grid-row: 3;
-  text-align: center;
-  border: 2px solid grey;
-  border-radius: 10px;
-  margin: 50px 50px 100px 10px;
-  padding: 50px;
-  background: White;
-} */
-
-/* .all-buttons {
-  grid-column: 3;
-  grid-row: 4;
-} */
-
-/* #play-buttons {
-  display: flex;
-  flex-direction: column;
-} */
 
 #game-results {
-  grid-column: 3;
-  grid-row: 5;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row: 3;
+  grid-gap: 10px;
+  font-size: 35px;
+  color: yellow;
+  border: 2px solid grey;
+  border-radius: 10px;
+  outline: auto;
+  background: black;
+  padding: 15px;
+  margin: 60px 50px -60px;
 }
 
-#dealer-deck {
-  grid-column: 3;
+/* #start {
+  height: 10vh;
+  grid-column: 5;
+  grid-row: 5;
+
+} */
+
+#play-buttons {
+  display: grid;
+  grid-column: 1;
+  grid-row: 3;
+  height: 15vh;
+  width: 10vh;
+  /* width: 200px; */
+  justify-self: center;
+  /* align-self: stretch; */
+}
+
+.player {
+  font-size: 20px;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row: 5;
+  color: white;
+}
+
+.dealer {
+  font-size: 20px;
+  color: white;
+  grid-column-start: 2;
+  grid-column-end: 5;
   grid-row: 1;
-  
 }
 
 #dealer-hand {
+  font-size: 28px;
   grid-column: 3;
   grid-row: 2;
 }
@@ -92,14 +86,33 @@ header {
 #dealer-total {
   grid-column: 3;
   grid-row: 4;
+  color: white;
+}
+
+#dealer-deck {
+  grid-column: 2;
+  grid-row: 1;
+  border: 2px solid grey;
+  border-radius: 10px;
+  outline: auto;
+  background: red;
+  padding: 20px;
+  margin: 0px 300px;
 }
 
 #player-deck {
   grid-column: 3;
   grid-row: 11;
+  border: 2px solid grey;
+  border-radius: 10px;
+  outline: auto;
+  background: blue;
+  padding: 20px;
+  margin: 0px 300px;
 }
 
 #player-hand {
+  font-size: 28px;
   grid-column: 3;
   grid-row: 10; 
 }
@@ -107,53 +120,11 @@ header {
 #player-total {
   grid-column: 3;
   grid-row: 9;
+  color: white;
 }
-
-#hit {
-  grid-column: 2;
-  grid-row: 7;
-}
-
-#stand {
-  grid-column: 4;
-  grid-row: 7;
-}
-
-.show-hit {
-  display: grid;
-  grid-column: 2;
-  grid-row: 5;
-}
-
-.show-stand {
-  display: grid;
-  grid-column: 4;
-  grid-row: 5;
-}
-
 /* .hidden {
   display: none;
 } */
-
-/* .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  border: 4px dotted grey;
-} */
-
-#start {
-  position: inherit;
-  /* left: 50%;
-  top: 50%;
-  right: 50%;
-  bottom: 50%; */
-  /* margin: 50px 10px 10px 50px; */
-  grid-column: 3;
-  grid-row: 7;
-  padding: 50px;
-  text-align: center;
-}
 
 button {
   /* display: grid; */
@@ -171,4 +142,8 @@ button {
 button:hover {
   background-color: rgb(228, 231, 20);
   color: white;
+}
+
+.card-deck {
+  transform: translate(15vw, 5vh) rotate(-25deg);
 }
