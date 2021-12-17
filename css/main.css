@@ -2,14 +2,12 @@ body {
   background: green;
   background-image: url("../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg");
   background-size: cover;
-  /* background-position: center; */
   height: 100vh;
   font-family: Helvetica;
   display: grid;
   /* mobile first - single column */
   grid-template-rows: 100px 200px 100px 100px 100px;
   grid-template-columns: 6fr 5fr 2fr 2fr 2fr 2fr;
-  /* grid-gap: 10vw; */
   text-align: center;
 }
 
@@ -24,8 +22,6 @@ header {
   border-radius: 10px;
   outline: auto;
   background: black;
-  /* height: 5vh; */
-  /* bottom: 20px; */
 }
 
 #game-results {
@@ -43,22 +39,13 @@ header {
   margin: 60px 50px -60px;
 }
 
-/* #start {
-  height: 10vh;
-  grid-column: 5;
-  grid-row: 5;
-
-} */
-
 #play-buttons {
   display: grid;
   grid-column: 1;
   grid-row: 3;
   height: 15vh;
   width: 10vh;
-  /* width: 200px; */
   justify-self: center;
-  /* align-self: stretch; */
 }
 
 .player {
@@ -122,14 +109,8 @@ header {
   grid-row: 9;
   color: white;
 }
-/* .hidden {
-  display: none;
-} */
 
 button {
-  /* display: grid; */
-  /* margin: 50px 50px 30px 10px; */
-  /* padding: 50px; */
   font-size: 16px;
   background: yellow;
   color: grey;
