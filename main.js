@@ -28,7 +28,6 @@ hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
 
 /*------------------ Once Start Game is pressed. The init function is called ----------------*/
-
 function init() {
   playerHand = [];
   dealerHand = [];
@@ -42,11 +41,9 @@ function init() {
   dealerCardValues();
   updateScores();
   checkPlayerTotal();
-  // buttonChange();
 }
 
 /*---------------------------- Deal and reveal card functions----------------------------*/
-
 function dealPlayerCards () {
     for (let i = 0; i < 2; i++){
         let card = shuffledDeck.pop();
@@ -89,8 +86,6 @@ function revealDealerCard() {
 }
 
 /*--------------------------  Player/Dealer Hit, Stand and End turn functions----------------------*/
-
-
 function playerHit() {
     let card = shuffledDeck.pop();
         playerHand.push(card); 
@@ -128,10 +123,8 @@ function stand() {
 }
 
 /*------------------------  Master deck and Shuffled deck functions----------------------*/
-
 function newDeck() {
     const deck = [];
-    // Use nested forEach to generate card objects
     suits.forEach(function(suit) {
       ranks.forEach(function(rank) {
         deck.push({
@@ -152,7 +145,6 @@ function shuffleDeck() {
     while (tempDeck.length) {
       // Get a random index for a card still in the tempDeck
       const rndIdx = Math.floor(Math.random() * tempDeck.length);
-      // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
       shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
     }
     return shuffledDeck;
@@ -171,11 +163,11 @@ function shuffleDeck() {
     resetAceValue(); 
     showPlayerHand();
     showDealerHand();
+    startGameBtn.innerText = ("Restart Game?");
   }
   
 
-/*----------------------------  Game Logic ----------------------------*/
-
+/*-----------------------------------  Game Logic -----------------------------------*/
 function checkPlayerTotal() {
   if (playerTotal === 21) {
     stand(); 
@@ -209,8 +201,7 @@ function updateScores() {
 
 
 
-/*-------------------- Ace value logic functions  ----------------------*/
-
+/*---------------------------------- Ace value logic  ------------------------------------*/
 function playerHasAce(card) {
   for (let i = 0; i < playerHand.length; i++) {
     if (playerHand[i].face.includes('A') && playerTotal + card.value > 21) {
@@ -244,90 +235,67 @@ function resetAceValue() {
 
 
 /*--------------------  Compare values and update HTML functions  ----------------------*/
-
 function compareValues() {
   if (playerTotal === 21 && dealerTotal === 21){
     gameResults.innerText = (`It is a Tie! Both Player and Dealer has Blackjack!`)
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (' ');
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal === dealerTotal){
     gameResults.innerText = (`It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal === 21 && dealerTotal > 21) {
     gameResults.innerText = (`Player has Blackjack! Dealer Busts with ${dealerTotal}!`);
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal === 21 && dealerTotal < 21) {
     gameResults.innerText = (`Player has Blackjack! Dealer loss with ${dealerTotal}!`);
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (dealerTotal === 21 && playerTotal < 21) {
     gameResults.innerText = (`Dealer has Blackjack! Player loss with ${playerTotal}!`);
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (dealerTotal === 21 && playerTotal > 21) {
     gameResults.innerText = (`Dealer has Blackjack! Player Busts with ${playerTotal}!`);
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal > 21) {
     gameResults.innerText = (`Player Bust with ${playerTotal}! Dealer wins with ${dealerTotal}!`);
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if(dealerTotal > 21) {
     gameResults.innerText = (`Dealer Busts with ${dealerTotal}! Player Wins with ${playerTotal}!`);
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
   else if (playerTotal > dealerTotal) {
     gameResults.innerText = (`Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }else {
     gameResults.innerText = (`Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!`)
-    playerCardTotal.innerText = (' ');
+    playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
 }
-
-
-
-//////////////////////////////////////////// Test Functions! ////////////////////////////////////////////
-
-  
-// Test Functions for adding new buttons
-// function addButtons() {
-//   const standBtn = document.createElement('#stand');
-// }
-
-
-
-// function buttonChange() {
-//   playButtons.classList.remove('hidden');
-//   hitBtn.classList.add('show-hit');
-//   standBtn.classList.add('show-stand');
-//   startGameBtn.classList.add('hidden');
-//   console.log("button change works")
-// }
-
-
 
 // psuedocode
 
