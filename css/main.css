@@ -1,26 +1,50 @@
+/* body {
+  
+  height: 100vh;
+  font-family: Helvetica;
+  display: grid;
+  grid-template-columns: 200px 400px 200px 200px;
+  grid-template-rows: 55px 30px 200px 40px 250px 30px 150px;
+  grid-gap: 2vw;
+  text-align: center;
+} */
+
+/* body {
+  background: rgb(255, 255, 255);
+  background-image: url("../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  font-family: Helvetica;
+  display: grid;
+  /* mobile first - single column */
+  /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr; */
+  /* grid-gap: 10vw; */
+  /* text-align: center; */
+/* }  */
+
 body {
   background: green;
-  /* height: 100vh; */
+  background-image: url("../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   font-family: Helvetica;
-  /* display: grid; */
+  display: grid;
   /* mobile first - single column */
-  /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 4fr 1fr 1fr 4fr; */
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 100px 200px 100px 1fr;
   /* grid-gap: 10vw; */
   text-align: center;
 }
 
-main {
-  padding: 20px;
-}
-
 header {
   font-family: Helvetica;
-  /* display: inline-flex;
-  position: center; */
-  /* width: 400px;
-  height: 150px; */
-  padding: 20px;
+  display: block;
+  padding: 10px;
+  grid-column: 1;
+  grid-row: 1;
   border: 2px solid grey;
   border-radius: 10px;
   outline: auto;
@@ -28,78 +52,72 @@ header {
   height: 10vh;
 }
 
-#play-buttons {
-  display: inline-block;
-  width: 100px;
-  height: 50px;
-}
-
-#start {
-  position: center;
-  /* grid-column: 4;
-  grid-row: 4; */
-  width: 200px;
-  height: 100px;
+/* #welcome {
+  grid-column: 3;
+  grid-row: 3;
   text-align: center;
-  justify-self: center;
-  align-self: center;
-}
+  border: 2px solid grey;
+  border-radius: 10px;
+  margin: 50px 50px 100px 10px;
+  padding: 50px;
+  background: White;
+} */
+
+/* .all-buttons {
+  grid-column: 3;
+  grid-row: 4;
+} */
+
+/* #play-buttons {
+  display: flex;
+  flex-direction: column;
+} */
 
 #game-results {
-  /* grid-column: 4;
-  grid-row: 3; */
+  grid-column: 3;
+  grid-row: 5;
 }
 
-#dealer-side {
-  /* grid-column: 4;
-  grid-row: 1; */
+#dealer-deck {
+  grid-column: 3;
+  grid-row: 1;
   
 }
 
 #dealer-hand {
-  font-size: 40px;
+  grid-column: 3;
+  grid-row: 2;
 }
-
-/* #dealer-deck, #dealer-hand  */
 
 #dealer-total {
-  /* grid-column: 3;
-  grid-row: 4; */
+  grid-column: 3;
+  grid-row: 4;
 }
 
-#player-side{
-  /* grid-column: 3;
-  grid-row: 7; */
+#player-deck {
+  grid-column: 3;
+  grid-row: 11;
 }
 
 #player-hand {
-  font-size: 40px;
+  grid-column: 3;
+  grid-row: 10; 
 }
 
 #player-total {
-  /* grid-column: 4;
-  grid-row: 7; */
+  grid-column: 3;
+  grid-row: 9;
 }
 
 #hit {
-  /* display: grid; */
-  /* grid-column: 4;
-  grid-row: 7; */
-  /* place-items: center; */
-  /* justify-content: end; */
-  /* text-align: center;*/
-  /* justify-self: center; */
-  /* align-self: center;  */
+  grid-column: 2;
+  grid-row: 7;
 }
 
-/* #stand {
+#stand {
   grid-column: 4;
   grid-row: 7;
-  width: 50px;
-  height: 50px;
-  /* justify-self: center;
-  align-self: center; */
-/* }
+}
 
 .show-hit {
   display: grid;
@@ -124,21 +142,18 @@ header {
   border: 4px dotted grey;
 } */
 
-/* #welcome {
+#start {
+  position: inherit;
+  /* left: 50%;
+  top: 50%;
+  right: 50%;
+  bottom: 50%; */
+  /* margin: 50px 10px 10px 50px; */
   grid-column: 3;
-  grid-row: 3;
-  text-align: center;
-  border: 2px solid grey;
-  border-radius: 10px;
-  margin: 50px 50px 100px 10px;
+  grid-row: 7;
   padding: 50px;
-  background: White;
-} */
-
-/* .all-buttons {
-  grid-column: 3;
-  grid-row: 4;
-} */
+  text-align: center;
+}
 
 button {
   /* display: grid; */
