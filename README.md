@@ -3,6 +3,8 @@ Welcome to Blackjack!
 Game Description:
 Blackjack or "21" is a game of chance where players attempt to beat the dealer by having the highest card count or getting a card count as close to 21 as possible without going over 21. Having a value of 21 results in a "Blackjack" and if the dealer cannot match 21, the player wins! Having a card value over 21 results in a "Bust" and automatically results in a loss.
 
+<img src="../css/card-deck-css/images/Other/Blackjack Start Game.png">
+
 Card Values:
 The masterdeck has a total of 52 cards. All numbered cards is its pip value with face cards (Jack, Queen, King) equaling a value of 10 and Aces worth either 11 or 1. 
 
