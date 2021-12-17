@@ -14,7 +14,7 @@ Once start game is clicked, all players will receive two cards face up. However,
 Dealer's turn:
 Once the player has decided to stand or has blackjack, the dealer will begin their play. The hidden card is revealed and if the dealer card value is under 17, the dealer must hit. The dealer will continue to hit until their card value is over 17 where they must stand. Both the player and dealer card values are compared and whoever has the highest card value wins! If the dealer card value is over 21, the dealer will bust and the player wins! If both the player and the dealer has the same card value, the game results in a tie. 
 
-Feeling lucky? Try out the game[here](https://stylec0.github.io/Blackjack/)
+Feeling lucky? Try out the game [here](https://stylec0.github.io/Blackjack/)
 
 Technologies Used: JavaScript, HTML, CSS
 
