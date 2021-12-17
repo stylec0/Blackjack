@@ -34,7 +34,6 @@ function init() {
   dealerHand = [];
   playerTotal = 0;
   dealerTotal = 0;
-  newDeck();
   shuffleDeck();
   dealPlayerCards();
   dealDealerCards();
@@ -46,13 +45,12 @@ function init() {
   // buttonChange();
 }
 
-/*---------------------------- Deal and Show card functions----------------------------*/
+/*---------------------------- Deal and reveal card functions----------------------------*/
 
 function dealPlayerCards () {
     for (let i = 0; i < 2; i++){
         let card = shuffledDeck.pop();
         playerHand.push(card); 
-        playerHasAce(card);
     }
 }
 
@@ -90,7 +88,7 @@ function revealDealerCard() {
   })
 }
 
-/*--------------------------  Player/Dealer Hit, Stand and end turn functions----------------------*/
+/*--------------------------  Player/Dealer Hit, Stand and End turn functions----------------------*/
 
 
 function playerHit() {
@@ -170,6 +168,7 @@ function shuffleDeck() {
   // Render function for cards
   function render() {
     renderNewShuffledDeck();
+    resetAceValue(); 
     showPlayerHand();
     showDealerHand();
   }
@@ -208,13 +207,14 @@ function updateScores() {
   dealerCardTotal.innerText = (" ");
 }
 
+
+
+/*-------------------- Ace value logic functions  ----------------------*/
+
 function playerHasAce(card) {
   for (let i = 0; i < playerHand.length; i++) {
     if (playerHand[i].face.includes('A') && playerTotal + card.value > 21) {
       playerHand[i].value = 1; 
-      playerTotal += playerHand[i].value;
-    } else if (playerHand[i].face.includes('A') && playerTotal + card.value < 21) {
-      playerHand[i].value = 11;
       playerTotal += playerHand[i].value;
     }
   }
@@ -228,6 +228,20 @@ function dealerHasAce(card) {
     }
 }
 
+// Reset Ace value function. Applied in the render function after game restart
+
+function resetAceValue() {
+  for (let i = 0; i < playerHand.length; i++) {
+    if (playerHand[i].face.includes('A')) {
+      playerHand[i].value = 11; 
+      playerTotal += playerHand[i].value;
+      console.log("reset Ace Value is working")
+    }
+  }
+}
+
+
+
 
 /*--------------------  Compare values and update HTML functions  ----------------------*/
 
@@ -238,7 +252,7 @@ function compareValues() {
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
     startGameBtn.innerText = ("Play Again?");
   }
-  else if (playerTotal && dealerTotal === 21){
+  else if (playerTotal === 21 && dealerTotal === 21){
     gameResults.innerText = (`It is a Tie! Both Player and Dealer has Blackjack!`)
     playerCardTotal.innerText = (' ');
     dealerCardTotal.innerText = (' ');
