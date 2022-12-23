@@ -25,6 +25,7 @@ let dealerDeckHand = document.getElementById('dealer-hand');
 
 /*--------------------------------- event listeners ---------------------------------*/
 startGameBtn.addEventListener('click', init);
+//playAgainBtn.addEventListener('click', )
 hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
 
