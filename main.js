@@ -9,6 +9,7 @@ let dealerHand = [];
 let playerHand = [];
 let playerTotal = 0;
 let dealerTotal = 0;
+let moneyTotal = 100;
 
 // /*-------------------------- cached element references -------------------*/
 const startGameBtn = document.getElementById('start');
@@ -33,6 +34,7 @@ function init() {
   dealerHand = [];
   playerTotal = 0;
   dealerTotal = 0;
+  moneyTotal = 100;
   shuffleDeck();
   dealPlayerCards();
   dealDealerCards();
@@ -42,6 +44,50 @@ function init() {
   updateScores();
   checkPlayerTotal();
 }
+
+/*------------------------  Master deck and Shuffled deck functions----------------------*/
+function newDeck() {
+    const deck = [];
+    suits.forEach(function(suit) {
+      ranks.forEach(function(rank) {
+        deck.push({
+          // The 'face' property maps to the library's CSS classes for cards
+          face: `${suit}${rank}`,
+          // Setting the 'value' property for game of blackjack, not war
+          value: Number(rank) || (rank === 'A' ? 11 : 10)
+        });
+      });
+    });
+    return deck;
+  }
+
+function shuffleDeck() {
+    // Create a copy of the masterDeck (leave masterDeck untouched!)
+    const tempDeck = [...masterDeck];
+    const shuffledDeck = [];
+    while (tempDeck.length) {
+      // Get a random index for a card still in the tempDeck
+      const rndIdx = Math.floor(Math.random() * tempDeck.length);
+      shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
+    }
+    return shuffledDeck;
+  }
+  
+  function renderNewShuffledDeck() {
+    // Create a copy of the masterDeck (leave masterDeck untouched!)
+    shuffledDeck = shuffleDeck();
+    showPlayerHand(shuffledDeck);
+  }
+
+
+  // Render function for cards
+  function render() {
+    renderNewShuffledDeck();
+    resetAceValue(); 
+    showPlayerHand();
+    showDealerHand();
+    startGameBtn.innerText = ("Restart Game?");
+  }
 
 /*---------------------------- Deal and reveal card functions----------------------------*/
 function dealPlayerCards () {
@@ -122,49 +168,7 @@ function stand() {
   dealerTurn();
 }
 
-/*------------------------  Master deck and Shuffled deck functions----------------------*/
-function newDeck() {
-    const deck = [];
-    suits.forEach(function(suit) {
-      ranks.forEach(function(rank) {
-        deck.push({
-          // The 'face' property maps to the library's CSS classes for cards
-          face: `${suit}${rank}`,
-          // Setting the 'value' property for game of blackjack, not war
-          value: Number(rank) || (rank === 'A' ? 11 : 10)
-        });
-      });
-    });
-    return deck;
-  }
 
-function shuffleDeck() {
-    // Create a copy of the masterDeck (leave masterDeck untouched!)
-    const tempDeck = [...masterDeck];
-    const shuffledDeck = [];
-    while (tempDeck.length) {
-      // Get a random index for a card still in the tempDeck
-      const rndIdx = Math.floor(Math.random() * tempDeck.length);
-      shuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]);
-    }
-    return shuffledDeck;
-  }
-  
-  function renderNewShuffledDeck() {
-    // Create a copy of the masterDeck (leave masterDeck untouched!)
-    shuffledDeck = shuffleDeck();
-    showPlayerHand(shuffledDeck);
-  }
-
-
-  // Render function for cards
-  function render() {
-    renderNewShuffledDeck();
-    resetAceValue(); 
-    showPlayerHand();
-    showDealerHand();
-    startGameBtn.innerText = ("Restart Game?");
-  }
   
 
 /*-----------------------------------  Game Logic -----------------------------------*/

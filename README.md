@@ -25,7 +25,7 @@ Technologies Used: JavaScript, HTML, CSS
 Planned future enchancements: 
 
     1. Add betting feature
-    2. Add additional CSS
+    2. Add additional CSS and images
     2. Add card animations and sounds effects
     3. Add multiple players feature
     4. Add increased deck limit
