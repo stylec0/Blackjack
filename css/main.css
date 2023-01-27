@@ -1,129 +1,233 @@
+:root {
+	/* The width of the container class that will be wrapped around the different elements. Screen size change */
+	/*--container-width-lg: 75%;
+	--container-width-md: 86%;
+	--container-width-sm: 90%;*/
+}
+
 body {
-  background: green;
-  background-image: url("../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg");
-  background-size: cover;
-  height: 100vh;
-  font-family: Helvetica;
-  /*display: grid;
-  grid-template-rows: 100px 200px 100px 100px 100px;
-  grid-template-columns: 6fr 5fr 2fr 2fr 2fr 2fr;*/
+	background: green;
+	background-image: url('../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg');
+	background-size: cover;
+	font-family: Helvetica;
+}
+
+.row {
   text-align: center;
 }
 
-/*header {
-  font-family: Helvetica;
+.game-screen button {
+    font-size: 16px;
+    background: yellow;
+    color: grey;
+    border: 2px solid grey;
+    border-radius: 10px;
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: rgb(228, 231, 20);
+    color: white;
+  }
+
+section {
+  /*display: flex;
+  flex-direction: column;*/
+}
+
+.welcome-container {
+  text-align: center;
+  margin-top: 100px;
   color: white;
-  padding: 10px;
-  display:grid;
-  grid-column: 1;
-  grid-row: 1;
-  border: 2px solid grey;
-  border-radius: 10px;
-  outline: auto;
-  background: black;
+}
+
+.welcome-screen {
+}
+
+.welcome-screen h1 {
+  margin-bottom: 20px;
+}
+
+.welcome-screen h3 {
+  margin-bottom: 50px;
+}
+
+.bet-value {
+  margin-bottom: 20px;
+}
+
+.bet-buttons {
+  margin-bottom: 20px;
+}
+
+
+
+.card-deck {
+	transform: translate(15vw, 5vh) rotate(-25deg);
+}
+
+.inactive {
+	display: none;
+}
+
+
+
+/* ======= MEDIA QUERIES (MEDIUM DEVICES, Tablets) ========= */
+/*@media screen and (max-width: 1024px) {
+	.body {
+		width: var(--container-width-md);
+	}*/
+	/*section {
+      margin-top: 6rem;
+  }*/
+
+
+/* ======= MEDIA QUERIES (SMALL DEVICES, Phones) ========= */
+/*@media screen and (max-width: 600px) {
+	.body {
+		width: var(--container-width-sm);
+	}
+	/*section > h2{
+      margin-top: 2rem;
+  }*/
+
+
+
+  /* OLD CODE */
+
+   /*body {
+    background: green;
+    background-image: url('../css/card-deck-css/images/Other/istockphoto-1303915114-612x612.jpeg');
+    background-size: cover;
+    /*height: 100vh;
+    font-family: Helvetica;
+    /*display: flex;*/
+    /*display: grid;*/
+    /*grid-template-rows: 20% 20% 20% 20% 20%;*/
+    /*grid-template-rows: 100px 200px 100px 100px 100px;*/
+    /*grid-template-columns: 6fr 5fr 2fr 2fr 2fr;*/
+    /*text-align: center;*/
+    /*display: flex;
+    flex-direction: column;*/
+    /*align-items: center;*/
+    /*margin-top: 50px;*/
+    /*justify-content: center;
+  } */
+
+  /*.player {
+	font-size: 20px;
+	grid-column-start: 2;
+	grid-column-end: 5;
+	grid-row: 5;
+	/*display: flex;
+  flex-direction: column;
+	justify-content: center;
+	/*bottom: 0px;
+  align-items: flex-end;
+  color: white;
+}
+
+header {
+	font-family: Helvetica;
+	color: white;
+	padding: 10px;
+	display: grid;
+	grid-column: 1;
+	grid-row: 1;
+	border: 2px solid grey;
+	border-radius: 10px;
+	outline: auto;
+	background: black;
 }
 
 #game-results {
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row: 3;
-  grid-gap: 10px;
-  font-size: 35px;
-  color: yellow;
-  border: 2px solid grey;
-  border-radius: 10px;
-  outline: auto;
-  background: black;
-  padding: 15px;
-  margin: 60px 50px -60px;
+	grid-column-start: 2;
+	grid-column-end: 5;
+	grid-row: 3;
+	grid-gap: 10px;
+	font-size: 35px;
+	color: yellow;
+	border: 2px solid grey;
+	/*border-radius: 10px;*/
+	/*outline: auto;
+	background: black;
+	padding: 15px;
+	margin: 60px 50px -60px;
 }
 
 #play-buttons {
-  display: grid;
-  grid-column: 1;
-  grid-row: 3;
-  height: 15vh;
-  width: 10vh;
-  justify-self: center;
-}
-
-.player {
-  font-size: 20px;
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row: 5;
-  color: white;
+	display: flex;
+	grid-column: 1;
+	grid-row: 5;
+	height: 30%;
+	width: 50%;
+	/*justify-self: center;
 }
 
 .dealer {
-  font-size: 20px;
-  color: white;
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row: 1;
+	font-size: 20px;
+	color: white;
+	grid-column-start: 2;
+	grid-column-end: 5;
+	grid-row: 1;
 }
 
 #dealer-hand {
-  font-size: 28px;
-  grid-column: 3;
-  grid-row: 2;
+	font-size: 28px;
+	grid-column: 3;
+	grid-row: 2;
 }
 
 #dealer-total {
-  grid-column: 3;
-  grid-row: 4;
-  color: white;
+	grid-column: 3;
+	grid-row: 4;
+	color: white;
 }
 
 #dealer-deck {
-  grid-column: 2;
-  grid-row: 1;
-  border: 2px solid grey;
-  border-radius: 10px;
-  outline: auto;
-  background: red;
-  padding: 20px;
-  margin: 0px 300px;
+	grid-column: 2;
+	grid-row: 1;
+	border: 2px solid grey;
+	border-radius: 10px;
+	outline: auto;
+	background: red;
+	padding: 20px;
+	margin: 0px 300px;
 }
 
 #player-deck {
-  grid-column: 3;
-  grid-row: 11;
-  border: 2px solid grey;
-  border-radius: 10px;
-  outline: auto;
-  background: blue;
-  padding: 20px;
-  margin: 0px 300px;
+	grid-column: 3;
+	grid-row: 5;
+	border: 2px solid grey;
+	border-radius: 10px;
+	outline: auto;
+	background: blue;
+	padding: 20px;
+	margin: 20%;
 }
 
 #player-hand {
-  font-size: 28px;
-  grid-column: 3;
-  grid-row: 10; 
+	font-size: 28px;
+	grid-column: 3;
+	grid-row: 3;
 }
 
 #player-total {
-  grid-column: 3;
-  grid-row: 9;
-  color: white;
-}
+	grid-column: 3;
+	grid-row: 4;
+	color: white;
+}*/
 
-button {
-  font-size: 16px;
-  background: yellow;
-  color: grey;
-  border: 2px solid grey;
-  border-radius: 10px;
-  outline: none;
-  
+/*button {
+	font-size: 16px;
+	background: yellow;
+	color: grey;
+	border: 2px solid grey;
+	border-radius: 10px;
+	outline: none;
 }
 
 button:hover {
-  background-color: rgb(228, 231, 20);
-  color: white;
+	background-color: rgb(228, 231, 20);
+	color: white;
 }*/
-
-.card-deck {
-  transform: translate(15vw, 5vh) rotate(-25deg);
-}

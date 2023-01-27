@@ -1,37 +1,235 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Charles's BlackJack Project</title>
-    <link href="css/card-deck-css/css/cardstarter.css" rel="stylesheet" />
-    <link href="css/main.css" rel="stylesheet" />
-    <script defer src="main.js"></script>
-  </head>
-  <body>
-    <header><h1>Welcome to BlackJack!</h1></header>
-      <div class="dealer">
-          <h2 id="dealer-deck">Dealer Hand</h2>
-          <h2 id="dealer-total"></h2>
-          <div id="dealer-hand"></div>
-      </div>
-        <h2 id="game-results">Press Start Game to play!</h2>
-      <div class="player">    
-          <div id="player-hand"></div>
-          <h2 id="player-total"></h2>
-          <h2 id="player-deck">Player Hand</h2>
-      </div>
-      <div id="play-buttons" class="hidden">
-        <button id="start">Start Game</button>
-        <button id="hit">Hit</button>
-        <button id="stand">Stand</button>
-      </div> 
-      <div class="bets">
-        <button id='5'>$5</button>
-        <button id='10'>$10</button>
-        <button id='25'>$25</button>
-        <button id='50'>$50</button>
-        <button id='10'>$100</button>
-      </div>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>BlackJack</title>
+
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+			crossorigin="anonymous"
+		/>
+		<link href="css/card-deck-css/css/cardstarter.css" rel="stylesheet" />
+		<link href="css/main.css" rel="stylesheet" />
+		<link href="css/keyframes.css" rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+		/>
+		<script defer src="js/main.js"></script>
+		<script defer src="js/keyframe.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<!-- TestBootstrap Nav Bar-->
+		<nav
+			class="navbar navbar-expand-md navbar-dark bg-dark"
+			style="font-size: 1.5rem"
+		>
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#" style="font-size: 2rem"
+					>Welcome to Black Jack!</a
+				>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+					aria-controls="navbarNav"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Reset Game</a>
+						</li>
+						<li class="nav-item">
+							<a
+								class="nav-link active bi bi-github"
+								style="color: #ffffff"
+								aria-current="page"
+								href="https://github.com/stylec0"
+								target="blank"
+							></a>
+						</li>
+						<li class="nav-item ps-2 pt-1" style="font-size: 1rem">
+							<!-- Button trigger modal -->
+							<button
+								type="button"
+								class="btn btn-primary"
+								data-bs-toggle="modal"
+								data-bs-target="#exampleModal"
+							>
+								How to Play
+							</button>
+
+							<!-- Modal -->
+							<div
+								class="modal fade"
+								id="exampleModal"
+								tabindex="-1"
+								aria-labelledby="exampleModalLabel"
+								aria-hidden="true"
+							>
+								<div class="modal-dialog modal-xl">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">
+												Game Rules!
+											</h1>
+											<button
+												type="button"
+												class="btn-close"
+												data-bs-dismiss="modal"
+												aria-label="Close"
+											></button>
+										</div>
+										<div class="modal-body">
+											<p>
+												<strong>Goal</strong> Blackjack or "21" is a game of chance where players attempt to beat the dealer by having the highest card count or getting a card count as close to 21 as possible without going over 21. Having a value of 21 results in a "Blackjack" and if the dealer cannot match 21, the player wins! Having a card value over 21 results in a "Bust" and automatically results in a loss.
+											</p>
+											<p>
+												<strong>Gameplay</strong> Once start game is clicked, all players will receive two cards face up. However, the dealer will only reveal one card and has the other card face down. Players will decide whether to "Hit" or "Stand". Hit will allow the player to receive one card while Stand will end the player turn. If the player card total isn't over 21, the player can choose to either "Hit" or "Stand" again. If the player card value is 21, the player has "Blackjack" and will end their turn. If the player card value is over 21, they "Bust" and automatically lose the game.
+											</p>
+											<p>
+												<strong>Card Values</strong> The masterdeck has a total of 52 cards. All numbered cards is its pip value with face cards (Jack, Queen, King) equaling a value of 10 and Aces worth either 11 or 1.
+											</p>
+											<p>
+												<strong>Splitting Pairs</strong> If you receive 2 cards
+												of the same face value, you may choose to split your
+												pairs and play each hand separately. At this table, you
+												can only split once. After you split, one new card will
+												be dealt to each hand then you can choose to either hit
+												or stand for each hand accordingly.
+											</p>
+											<p>
+												<strong>Betting</strong> Bets must be placed prior to
+												playing. After receiving your first 2 cards, you can
+												choose to double down (double your original bet). After
+												your next move, you can no longer choose to double down.
+											</p>
+											<p>
+												<strong>Payout</strong> Payout is 1:1 unless you get a
+												blackjack. For a blackjack, payout is 3:2.
+											</p>
+										</div>
+										<div class="modal-footer">
+											<button
+												type="button"
+												class="btn btn-secondary"
+												data-bs-dismiss="modal"
+											>
+												Close
+											</button>
+											<button type="button" class="btn btn-primary">
+												Save changes
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- Test Bootstrap Nav Bar-->
+
+		<section>
+			<div class="welcome-container">
+				<div class="welcome-screen">
+					<h1>Feeling lucky?</h1>
+					<h3>Start playing by selecting your bet below!</h3>
+					<div class="bet-buttons">
+						<button>$5</button>
+						<button>$10</button>
+						<button>$25</button>
+						<button>$50</button>
+						<button>$100</button>
+					</div>
+					<div class="bet-value">Bet: 0</div>
+					<button class="start-game">Start Game Button</button>
+				</div>
+			</div>
+			<div class="row game-screen inactive">
+				<div class="dealer">
+					<h2 id="dealer-deck">Dealer Hand</h2>
+					<h2 id="dealer-total"></h2>
+					<div id="dealer-hand"></div>
+				</div>
+				<h2 id="row game-results">Press Start Game to play!</h2>
+				<div class="player">
+					<div id="player-hand"></div>
+					<h2 id="player-total"></h2>
+					<h2 id="player-deck">Player Hand</h2>
+				</div>
+				<div id="row play-buttons" class="hidden">
+					<button id="start">Start Game</button>
+					<button id="hit">Hit</button>
+					<button id="stand">Stand</button>
+				</div>
+				<div class="bets">
+					<button id="5">$5</button>
+					<button id="10">$10</button>
+					<button id="25">$25</button>
+					<button id="50">$50</button>
+					<button id="10">$100</button>
+				</div>
+			</div>
+		</section>
+	</body>
 </html>
+
+<!-- Bootstrap Nav Bar
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container-fluid">
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<a class="navbar-brand" href="#">Welcome to BlackJack</a>
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<!-- Bootstrap Nav Bar Cut data at bottom of html
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#">Reset Game</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active bi bi-github" style="color: #ffffff" aria-current="page" href="https://github.com/stylec0" target="blank"></a>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+</nav>-->
+
+<!--<li class="nav-item">
+	<a class="nav-link active" aria-current="page" href="#">Home</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="#">Link</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link disabled">Disabled</a>
+</li>-->

@@ -25,12 +25,12 @@ let dealerDeckHand = document.getElementById('dealer-hand');
 
 /*--------------------------------- event listeners ---------------------------------*/
 startGameBtn.addEventListener('click', init);
-//playAgainBtn.addEventListener('click', )
 hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
 
 /*------------------ Once Start Game is pressed. The init function is called ----------------*/
 function init() {
+  
   playerHand = [];
   dealerHand = [];
   playerTotal = 0;
@@ -45,6 +45,11 @@ function init() {
   updateScores();
   checkPlayerTotal();
 }
+
+//function startGame() {
+//  welcomeScreen.classList.add('inactive')
+//  gameScreen.classList.remove('inactive')
+//}
 
 /*------------------------  Master deck and Shuffled deck functions----------------------*/
 function newDeck() {
@@ -87,7 +92,7 @@ function shuffleDeck() {
     resetAceValue(); 
     showPlayerHand();
     showDealerHand();
-    startGameBtn.innerText = ("Restart Game?");
+    startGameBtn.innerText = ("Restart");
   }
 
 /*---------------------------- Deal and reveal card functions----------------------------*/
@@ -106,9 +111,9 @@ function dealDealerCards () {
 }
 
 function showPlayerHand() {
-    playerDeckHand.innerHTML = '';
+    playerDeckHand.innerHTML = ''; 
     playerHand.forEach(function(card) {
-      let cards = `<div class = "card ${card.face}"></div>`
+      let cards = `<div class = "slide-left card ${card.face}"></div>`
       playerDeckHand.innerHTML += cards;
     })
   }
@@ -121,19 +126,22 @@ function showDealerHand() {
         cards = `<div class = "card back-blue"></div>`
       }
       dealerDeckHand.innerHTML += cards;
+      dealerDeckHand.classList.add('animate__animated', 'animate__flipInX')
 })
 }
 
 function revealDealerCard() {
   dealerDeckHand.innerHTML = '';
   dealerHand.forEach(function(card, idx) {
-  let cards = `<div class = "card ${card.face}"></div>`
+  let cards = `<div class = "card ${card.face} "></div>`
   dealerDeckHand.innerHTML += cards;
+  
   })
 }
 
 /*--------------------------  Player/Dealer Hit, Stand and End turn functions----------------------*/
 function playerHit() {
+  //removeAnimation()
     let card = shuffledDeck.pop();
         playerHand.push(card); 
         let cards = `<div class = "card ${card.face}"></div>`
@@ -301,6 +309,21 @@ function compareValues() {
     startGameBtn.innerText = ("Play Again?");
   }
 }
+
+//function addAnimation() {
+//  let domElement = document.querySelector('.card');
+//let classToDelete = Array.from(domElement.classList)[0];
+//domElement.classList.remove(classToDelete);
+//}
+
+//function removeAnimation() {
+//  playerDeckHand.forEach(playerCardDeck => 
+//    console.log(playerCardDeck))
+//  }
+//  playerDeckHand.classList.remove('slide-left')
+//  let domElement = document.querySelector('.card');
+//console.log(domElement, "This is the DomElement")
+//}
 
 // psuedocode
 
