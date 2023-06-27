@@ -1,4 +1,5 @@
 const welcomeScreen = document.querySelector('.welcome-screen');
+const welcomeContainer = document.querySelector('.welcome-container');
 //const gameScreen = document.querySelector('.game-screen');
 //const startGameBtn = document.querySelector('.start-game');
 const betValue = document.querySelector('.bet-value')

@@ -70,11 +70,13 @@ if ( currentWager === 0 ) {
   dealerCardValues();
   updateScores();
   checkPlayerTotal();
+  welcomeContainer.classList.remove('fade-in-fwd');
   //updateScreenText()
 }
 }
 
 function replay(){
+  welcomeContainer.classList.add('fade-in-fwd');
   wageScreenAppear()
   clearWager()
   startGameBtn.innerText = "Start Game"
