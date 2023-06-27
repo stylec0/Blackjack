@@ -105,7 +105,7 @@
 												<strong>Goal</strong> Blackjack or "21" is a game of chance where players attempt to beat the dealer by having the highest card count or getting a card count as close to 21 as possible without going over 21. Having a value of 21 results in a "Blackjack" and if the dealer cannot match 21, the player wins! Having a card value over 21 results in a "Bust" and automatically results in a loss.
 											</p>
 											<p>
-												<strong>Gameplay</strong> Once start game is clicked, all players will receive two cards face up. However, the dealer will only reveal one card and has the other card face down. Players will decide whether to "Hit" or "Stand". Hit will allow the player to receive one card while Stand will end the player turn. If the player card total isn't over 21, the player can choose to either "Hit" or "Stand" again. If the player card value is 21, the player has "Blackjack" and will end their turn. If the player card value is over 21, they "Bust" and automatically lose the game.
+												<strong>Gameplay</strong> Once start game is clicked, all players will receive two cards face up. However, the dealer will only reveal one card and has the other card face down. Players will decide whether to "Hit" or "Stand". Hit will allow the player to receive one card while Stand will end the player turn. If the player card total isn't over 21, the player can choose to either "Hit" or "Stand" again. If the player card value is 21, the player has "Blackjack" and will end their turn. If the player card value is over 21, they "Bust" and automatically lose the game. Once all players have chosen to Stand, the Dealer will immediately reveal their face down card. If the dealer has a value or 17 or higher the dealer must stand. If not, the dealer will continue to hit until they reach the value of 17 or higher or if they bust. The players with the highest value wins!
 											</p>
 											<p>
 												<strong>Card Values</strong> The masterdeck has a total of 52 cards. All numbered cards is its pip value with face cards (Jack, Queen, King) equaling a value of 10 and Aces worth either 11 or 1.
@@ -137,9 +137,6 @@
 											>
 												Close
 											</button>
-											<button type="button" class="btn btn-primary">
-												Save changes
-											</button>
 										</div>
 									</div>
 								</div>
@@ -157,14 +154,16 @@
 					<h1>Feeling lucky?</h1>
 					<h3>Start playing by selecting your bet below!</h3>
 					<div class="bet-buttons">
-						<button>$5</button>
-						<button>$10</button>
-						<button>$25</button>
-						<button>$50</button>
-						<button>$100</button>
+						<button id="five">$5</button>
+						<button id="ten">$10</button>
+						<button id="twenty-five">$25</button>
+						<button id="fifty">$50</button>
+						<button id="hundred">$100</button>
+						<button id="clear-bet">Clear Wager</button>
 					</div>
-					<div class="bet-value">Bet: 0</div>
-					<button class="start-game">Start Game Button</button>
+					<div class="bet-value">Chip Bet: 0</div>
+					<div class="wallet">Chip Total: 500</div>
+					<button class="start-game">Start Game</button>
 				</div>
 			</div>
 			<div class="row game-screen inactive">
@@ -173,24 +172,24 @@
 					<h2 id="dealer-total"></h2>
 					<div id="dealer-hand"></div>
 				</div>
-				<h2 id="row game-results">Press Start Game to play!</h2>
+				<h2 class="row game-results"></h2>
 				<div class="player">
-					<div id="player-hand"></div>
 					<h2 id="player-total"></h2>
-					<h2 id="player-deck">Player Hand</h2>
+					<div id="player-hand"></div>
+					<h2 id="player-deck"></h2>
 				</div>
 				<div id="row play-buttons" class="hidden">
-					<button id="start">Start Game</button>
+					<button id="start" class="inactive">Play Again?</button>
 					<button id="hit">Hit</button>
 					<button id="stand">Stand</button>
 				</div>
-				<div class="bets">
+				<!--<div class="bets">
 					<button id="5">$5</button>
 					<button id="10">$10</button>
 					<button id="25">$25</button>
 					<button id="50">$50</button>
 					<button id="10">$100</button>
-				</div>
+				</div>-->
 			</div>
 		</section>
 	</body>

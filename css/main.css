@@ -23,6 +23,9 @@ body {
     border: 2px solid grey;
     border-radius: 10px;
     outline: none;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
   }
   
   button:hover {
@@ -41,12 +44,13 @@ section {
   color: white;
 }
 
-.welcome-screen {
-}
+/*.welcome-screen {
+}*/
 
 .welcome-screen h1 {
   margin-bottom: 20px;
 }
+
 
 .welcome-screen h3 {
   margin-bottom: 50px;
@@ -60,7 +64,12 @@ section {
   margin-bottom: 20px;
 }
 
-
+/* This is controlling the hit and stand text */
+.game-results {
+color: white;
+position: center;
+padding-left: 40%;
+}
 
 .card-deck {
 	transform: translate(15vw, 5vh) rotate(-25deg);

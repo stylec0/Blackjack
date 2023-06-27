@@ -12,10 +12,13 @@ let dealerTotal = 0;
 let moneyTotal = 100;
 
 // /*-------------------------- cached element references -------------------*/
-const startGameBtn = document.getElementById('start');
+const resetGameBtn = document.getElementById('start');
+const startGameBtn = document.querySelector('.start-game');
 const standBtn = document.getElementById('stand');
 const hitBtn = document.getElementById('hit');
-const gameResults = document.getElementById('game-results');
+const gameScreen = document.querySelector('.game-screen');
+const gameScreenResult = gameScreen.querySelector('.game-results')
+const gameResults = document.querySelector('.game-results');
 const playerCardTotal = document.getElementById('player-total')
 const dealerCardTotal = document.getElementById('dealer-total')
 const playButtons = document.getElementById('play-buttons');
@@ -24,13 +27,15 @@ let dealerDeckHand = document.getElementById('dealer-hand');
 
 
 /*--------------------------------- event listeners ---------------------------------*/
-startGameBtn.addEventListener('click', init);
+startGameBtn.addEventListener('click', startGame);
 hitBtn.addEventListener('click', playerHit);
 standBtn.addEventListener('click', stand);
+resetGameBtn.addEventListener('click', replay);
 
 /*------------------ Once Start Game is pressed. The init function is called ----------------*/
 function init() {
-  
+
+  wageScreenRemove()
   playerHand = [];
   dealerHand = [];
   playerTotal = 0;
@@ -44,12 +49,53 @@ function init() {
   dealerCardValues();
   updateScores();
   checkPlayerTotal();
+  //updateScreenText()
+  
 }
 
-//function startGame() {
-//  welcomeScreen.classList.add('inactive')
-//  gameScreen.classList.remove('inactive')
-//}
+function startGame() {
+if ( currentWager === 0 ) {
+  startGameBtn.innerText = "Please Place Your Bet First!"
+} else {
+  wageScreenRemove()
+  playerHand = [];
+  dealerHand = [];
+  playerTotal = 0;
+  dealerTotal = 0;
+  shuffleDeck();
+  dealPlayerCards();
+  dealDealerCards();
+  render();
+  playerCardValues();
+  dealerCardValues();
+  updateScores();
+  checkPlayerTotal();
+  //updateScreenText()
+}
+}
+
+function replay(){
+  wageScreenAppear()
+  clearWager()
+  startGameBtn.innerText = "Start Game"
+}
+
+function reset() {
+    gameResults.innerText = "Hit or Stand?"
+    playerHand = [];
+    dealerHand = [];
+    playerTotal = 0;
+    dealerTotal = 0;
+    moneyTotal = 100;
+    shuffleDeck();
+    dealPlayerCards();
+    dealDealerCards();
+    render();
+    playerCardValues();
+    dealerCardValues();
+    updateScores();
+    checkPlayerTotal();
+  }
 
 /*------------------------  Master deck and Shuffled deck functions----------------------*/
 function newDeck() {
@@ -92,7 +138,7 @@ function shuffleDeck() {
     resetAceValue(); 
     showPlayerHand();
     showDealerHand();
-    startGameBtn.innerText = ("Restart");
+    //startGameBtn.innerText = ("Restart");
   }
 
 /*---------------------------- Deal and reveal card functions----------------------------*/
@@ -113,7 +159,7 @@ function dealDealerCards () {
 function showPlayerHand() {
     playerDeckHand.innerHTML = ''; 
     playerHand.forEach(function(card) {
-      let cards = `<div class = "slide-left card ${card.face}"></div>`
+      let cards = `<div class = "card ${card.face}"></div>`
       playerDeckHand.innerHTML += cards;
     })
   }
@@ -150,6 +196,7 @@ function playerHit() {
         playerCardValues();
         updateScores();
         checkPlayerTotal();
+        //updateScreenText()
   }
 
 function dealerTurn() {
@@ -177,7 +224,9 @@ function stand() {
   dealerTurn();
 }
 
-
+//function updateScreenText() {
+//  console.log(gameScreenResult.innerHTML)
+//}
   
 
 /*-----------------------------------  Game Logic -----------------------------------*/
@@ -188,7 +237,9 @@ function checkPlayerTotal() {
     revealDealerCard();
     compareValues();
   } else { (playerTotal < 21)
-    gameResults.innerText = "Hit or Stand?";
+    //console.log(gameScreen.innerText)
+    console.log(gameResults.innerText)
+    gameResults.innerText = "Hit or Stand?"
   }
 }
 
@@ -253,60 +304,68 @@ function compareValues() {
     gameResults.innerText = (`It is a Tie! Both Player and Dealer has Blackjack!`)
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (' ');
-    startGameBtn.innerText = ("Play Again?");
+    resetGameBtn.classList.remove('inactive');
   }
   else if (playerTotal === dealerTotal){
     gameResults.innerText = (`It is a Tie! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    resetGameBtn.classList.remove('inactive');
   }
   else if (playerTotal === 21 && dealerTotal > 21) {
     gameResults.innerText = (`Player has Blackjack! Dealer Busts with ${dealerTotal}!`);
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds += bettingPool
+    resetGameBtn.classList.remove('inactive');
   }
   else if (playerTotal === 21 && dealerTotal < 21) {
     gameResults.innerText = (`Player has Blackjack! Dealer loss with ${dealerTotal}!`);
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds += bettingPool
+    resetGameBtn.classList.remove('inactive');
   }
   else if (dealerTotal === 21 && playerTotal < 21) {
     gameResults.innerText = (`Dealer has Blackjack! Player loss with ${playerTotal}!`);
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds -= bettingPool
+    resetGameBtn.classList.remove('inactive');
   }
   else if (dealerTotal === 21 && playerTotal > 21) {
     gameResults.innerText = (`Dealer has Blackjack! Player Busts with ${playerTotal}!`);
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds -= bettingPool
+    resetGameBtn.classList.remove('inactive');
   }
   else if (playerTotal > 21) {
     gameResults.innerText = (`Player Bust with ${playerTotal}! Dealer wins with ${dealerTotal}!`);
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds -= bettingPool
+    resetGameBtn.classList.remove('inactive');
   }
   else if(dealerTotal > 21) {
     gameResults.innerText = (`Dealer Busts with ${dealerTotal}! Player Wins with ${playerTotal}!`);
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds += bettingPool
+    resetGameBtn.classList.remove('inactive');
   }
   else if (playerTotal > dealerTotal) {
     gameResults.innerText = (`Player has won! Player has ${playerTotal} and Dealer has ${dealerTotal}!`)
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds += bettingPool
+    resetGameBtn.classList.remove('inactive');
   }else {
     gameResults.innerText = (`Dealer has won! Dealer has ${dealerTotal} and player has ${playerTotal}!`)
     playerCardTotal.innerText = (`Player has ${playerTotal}`);
     dealerCardTotal.innerText = (`Dealer has ${dealerTotal}`);
-    startGameBtn.innerText = ("Play Again?");
+    currentFunds -= bettingPool
+    resetGameBtn.classList.remove('inactive');
   }
 }
 
